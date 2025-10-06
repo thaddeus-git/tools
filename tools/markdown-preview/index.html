@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online Markdown editor and previewer. Write Markdown and see live HTML preview. Support for GitHub Flavored Markdown. No signup required.">
+    <meta name="keywords" content="markdown editor, markdown preview, markdown to html, markdown online, github markdown, markdown viewer">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Markdown Preview & Editor | deepv lab">
+    <meta property="og:description" content="Free online Markdown editor with live preview. Write and preview Markdown instantly.">
+    <meta property="og:url" content="https://deepvcode.com/markdown-preview">
+    
+    <title>Markdown Preview & Editor | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Markdown Preview & Editor",
+      "description": "Free online Markdown editor with live preview",
+      "url": "https://deepvcode.com/markdown-preview",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container-fluid">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>Markdown Preview & Editor</h1>
+                <p class="tool-description">Write Markdown and see live HTML preview with GitHub Flavored Markdown support</p>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" id="boldBtn" title="Bold (Ctrl+B)">
+                        <strong>B</strong>
+                    </button>
+                    <button class="toolbar-btn" id="italicBtn" title="Italic (Ctrl+I)">
+                        <em>I</em>
+                    </button>
+                    <button class="toolbar-btn" id="headingBtn" title="Heading">
+                        H
+                    </button>
+                    <button class="toolbar-btn" id="linkBtn" title="Link">
+                        🔗
+                    </button>
+                    <button class="toolbar-btn" id="imageBtn" title="Image">
+                        🖼️
+                    </button>
+                    <button class="toolbar-btn" id="codeBtn" title="Code">
+                        &lt;/&gt;
+                    </button>
+                    <button class="toolbar-btn" id="listBtn" title="List">
+                        ≡
+                    </button>
+                </div>
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" id="copyHtmlBtn" title="Copy HTML">
+                        📋 HTML
+                    </button>
+                    <button class="toolbar-btn" id="copyMarkdownBtn" title="Copy Markdown">
+                        📋 MD
+                    </button>
+                    <button class="toolbar-btn" id="clearBtn" title="Clear">
+                        🗑️
+                    </button>
+                </div>
+            </div>
+
+            <!-- Editor Grid -->
+            <div class="editor-grid">
+                <!-- Markdown Editor -->
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <h3>✍️ Markdown</h3>
+                        <span class="word-count" id="wordCount">0 words</span>
+                    </div>
+                    <textarea 
+                        id="markdownInput" 
+                        class="markdown-editor" 
+                        placeholder="# Welcome to Markdown Preview!
+
+Start typing your Markdown here...
+
+## Features
+- **Bold** and *italic* text
+- [Links](https://example.com)
+- `Code` and code blocks
+- Lists and more!
+
+Try editing this text to see the live preview!"
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+
+                <!-- Preview Panel -->
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <h3>👁️ Preview</h3>
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="preview">Preview</button>
+                            <button class="view-btn" data-view="html">HTML</button>
+                        </div>
+                    </div>
+                    <div id="previewContent" class="preview-content markdown-body"></div>
+                    <textarea id="htmlContent" class="html-content" readonly style="display: none;"></textarea>
+                </div>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="quick-reference">
+                <button class="reference-toggle" id="referenceToggle">
+                    📚 Markdown Quick Reference
+                </button>
+                <div class="reference-content" id="referenceContent" style="display: none;">
+                    <div class="reference-grid">
+                        <div class="reference-item">
+                            <strong>Headers</strong>
+                            <code># H1<br>## H2<br>### H3</code>
+                        </div>
+                        <div class="reference-item">
+                            <strong>Emphasis</strong>
+                            <code>**bold**<br>*italic*<br>~~strikethrough~~</code>
+                        </div>
+                        <div class="reference-item">
+                            <strong>Lists</strong>
+                            <code>- Item 1<br>- Item 2<br>1. Numbered</code>
+                        </div>
+                        <div class="reference-item">
+                            <strong>Links</strong>
+                            <code>[text](url)<br>[text][ref]</code>
+                        </div>
+                        <div class="reference-item">
+                            <strong>Images</strong>
+                            <code>![alt](url)</code>
+                        </div>
+                        <div class="reference-item">
+                            <strong>Code</strong>
+                            <code>`inline code`<br>```<br>code block<br>```</code>
+                        </div>
+                        <div class="reference-item">
+                            <strong>Quotes</strong>
+                            <code>> Blockquote</code>
+                        </div>
+                        <div class="reference-item">
+                            <strong>Tables</strong>
+                            <code>| Col 1 | Col 2 |<br>|-------|-------|<br>| A | B |</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
