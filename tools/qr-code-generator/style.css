@@ -1,0 +1,325 @@
+/* ============================================
+   QR CODE GENERATOR - TOOL-SPECIFIC STYLES
+   Common styles loaded from /shared/styles/common.css
+   ============================================ */
+
+/* ============================================
+   QR GRID LAYOUT
+   ============================================ */
+
+.qr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+    .qr-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   INPUT PANEL
+   ============================================ */
+
+.input-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.type-section {
+    margin-bottom: var(--space-2);
+}
+
+.section-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.type-select,
+.option-select {
+    width: 100%;
+    padding: var(--space-3);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-base);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.type-select:focus,
+.option-select:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ============================================
+   INPUT FIELDS
+   ============================================ */
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.input-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.text-input,
+.text-field {
+    width: 100%;
+    padding: var(--space-3);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-base);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    transition: all var(--transition-base);
+}
+
+.text-input {
+    resize: vertical;
+    font-family: var(--font-mono);
+}
+
+.text-input:focus,
+.text-field:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.text-input::placeholder,
+.text-field::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+/* ============================================
+   OPTIONS SECTION
+   ============================================ */
+
+.options-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+}
+
+.option-group {
+    margin-bottom: var(--space-3);
+}
+
+.option-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    border: none;
+    border-radius: var(--radius-base);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--color-primary-500);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-600);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--border-color);
+    transform: translateY(-1px);
+}
+
+.btn-large {
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    font-size: 1rem;
+}
+
+.btn-icon {
+    font-size: 1.125rem;
+}
+
+/* ============================================
+   PREVIEW PANEL
+   ============================================ */
+
+.preview-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.preview-panel h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.qr-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    padding: var(--space-6);
+    background: var(--bg-card);
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-md);
+}
+
+.qr-placeholder {
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: var(--space-3);
+}
+
+#qrcode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#qrcode canvas,
+#qrcode img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-base);
+}
+
+/* ============================================
+   DOWNLOAD SECTION
+   ============================================ */
+
+.download-section {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.download-section .btn {
+    flex: 1;
+}
+
+/* ============================================
+   FEATURE LIST & USAGE STEPS
+   ============================================ */
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list li {
+    padding: var(--space-2) 0;
+    color: var(--text-secondary);
+}
+
+.usage-steps {
+    padding-left: var(--space-6);
+}
+
+.usage-steps li {
+    padding: var(--space-2) 0;
+    color: var(--text-secondary);
+}
+
+.usage-steps strong {
+    color: var(--text-primary);
+}
+
+.tool-info h3 {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+    color: var(--text-primary);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .download-section {
+        flex-direction: column;
+    }
+    
+    .qr-preview {
+        min-height: 300px;
+        padding: var(--space-4);
+    }
+    
+    .placeholder-icon {
+        font-size: 3rem;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#qrcode {
+    animation: fadeIn 0.3s ease;
+}
+

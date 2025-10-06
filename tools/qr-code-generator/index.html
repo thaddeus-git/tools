@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online QR code generator. Create QR codes for URLs, text, WiFi, vCard, and more. Download as PNG or SVG. No signup required.">
+    <meta name="keywords" content="qr code generator, qr code maker, create qr code, qr code online, free qr code, qr generator">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="QR Code Generator | deepv lab">
+    <meta property="og:description" content="Free online QR code generator. Create and download QR codes instantly.">
+    <meta property="og:url" content="https://deepvcode.com/qr-code-generator">
+    
+    <title>QR Code Generator | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- QRCode.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "QR Code Generator",
+      "description": "Free online QR code generator tool",
+      "url": "https://deepvcode.com/qr-code-generator",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>QR Code Generator</h1>
+                <p class="tool-description">Create QR codes for URLs, text, WiFi, and more. Download as PNG or SVG.</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <div class="qr-grid">
+                    <!-- Input Section -->
+                    <div class="input-panel">
+                        <!-- QR Type Selector -->
+                        <div class="type-section">
+                            <label class="section-label">QR Code Type</label>
+                            <select id="qrType" class="type-select">
+                                <option value="text">📝 Text</option>
+                                <option value="url" selected>🔗 URL</option>
+                                <option value="email">📧 Email</option>
+                                <option value="phone">📞 Phone</option>
+                                <option value="sms">💬 SMS</option>
+                                <option value="wifi">📶 WiFi</option>
+                            </select>
+                        </div>
+
+                        <!-- Input Fields -->
+                        <div class="input-section">
+                            <!-- Text/URL Input -->
+                            <div id="textInput" class="input-group">
+                                <label for="textContent" class="input-label">Content</label>
+                                <textarea 
+                                    id="textContent" 
+                                    class="text-input" 
+                                    placeholder="Enter URL or text..."
+                                    rows="4"
+                                ></textarea>
+                            </div>
+
+                            <!-- Email Input -->
+                            <div id="emailInput" class="input-group" style="display: none;">
+                                <label for="emailAddress" class="input-label">Email Address</label>
+                                <input type="email" id="emailAddress" class="text-field" placeholder="email@example.com">
+                                <label for="emailSubject" class="input-label">Subject (optional)</label>
+                                <input type="text" id="emailSubject" class="text-field" placeholder="Email subject">
+                            </div>
+
+                            <!-- Phone Input -->
+                            <div id="phoneInput" class="input-group" style="display: none;">
+                                <label for="phoneNumber" class="input-label">Phone Number</label>
+                                <input type="tel" id="phoneNumber" class="text-field" placeholder="+1234567890">
+                            </div>
+
+                            <!-- SMS Input -->
+                            <div id="smsInput" class="input-group" style="display: none;">
+                                <label for="smsNumber" class="input-label">Phone Number</label>
+                                <input type="tel" id="smsNumber" class="text-field" placeholder="+1234567890">
+                                <label for="smsMessage" class="input-label">Message</label>
+                                <textarea id="smsMessage" class="text-input" placeholder="SMS message" rows="3"></textarea>
+                            </div>
+
+                            <!-- WiFi Input -->
+                            <div id="wifiInput" class="input-group" style="display: none;">
+                                <label for="wifiSSID" class="input-label">Network Name (SSID)</label>
+                                <input type="text" id="wifiSSID" class="text-field" placeholder="WiFi network name">
+                                <label for="wifiPassword" class="input-label">Password</label>
+                                <input type="text" id="wifiPassword" class="text-field" placeholder="WiFi password">
+                                <label for="wifiSecurity" class="input-label">Security</label>
+                                <select id="wifiSecurity" class="type-select">
+                                    <option value="WPA">WPA/WPA2</option>
+                                    <option value="WEP">WEP</option>
+                                    <option value="">None</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Options -->
+                        <div class="options-section">
+                            <h3>Options</h3>
+                            <div class="option-group">
+                                <label class="option-label">Size</label>
+                                <select id="qrSize" class="option-select">
+                                    <option value="200">Small (200x200)</option>
+                                    <option value="300" selected>Medium (300x300)</option>
+                                    <option value="400">Large (400x400)</option>
+                                    <option value="500">Extra Large (500x500)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Generate Button -->
+                        <button class="btn btn-primary btn-large" id="generateBtn">
+                            <span class="btn-icon">✨</span>
+                            <span class="btn-text">Generate QR Code</span>
+                        </button>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div class="preview-panel">
+                        <h3>Preview</h3>
+                        <div class="qr-preview" id="qrPreview">
+                            <div class="qr-placeholder">
+                                <span class="placeholder-icon">📱</span>
+                                <p>Enter content and click Generate</p>
+                            </div>
+                            <div id="qrcode" style="display: none;"></div>
+                        </div>
+
+                        <!-- Download Buttons -->
+                        <div class="download-section" id="downloadSection" style="display: none;">
+                            <button class="btn btn-secondary" id="downloadPngBtn">
+                                <span class="btn-icon">💾</span>
+                                <span class="btn-text">Download PNG</span>
+                            </button>
+                            <button class="btn btn-secondary" id="downloadSvgBtn">
+                                <span class="btn-icon">💾</span>
+                                <span class="btn-text">Download SVG</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>📱 Generate QR codes instantly</li>
+                    <li>🔗 Support for URLs, text, email, phone, SMS, WiFi</li>
+                    <li>📏 Multiple size options (200-500px)</li>
+                    <li>💾 Download as PNG or SVG</li>
+                    <li>👁️ Live preview</li>
+                    <li>⚡ Fast generation</li>
+                    <li>🔒 Client-side processing (secure)</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Select Type</strong> - Choose QR code type (URL, text, email, etc.)</li>
+                    <li><strong>Enter Content</strong> - Fill in the required information</li>
+                    <li><strong>Choose Size</strong> - Select QR code size</li>
+                    <li><strong>Generate</strong> - Click "Generate QR Code" button</li>
+                    <li><strong>Download</strong> - Download as PNG or SVG</li>
+                </ol>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="tool-info">
+                <h2>About QR Codes</h2>
+                <p>QR (Quick Response) codes are two-dimensional barcodes that can store various types of information. They can be scanned using smartphone cameras to quickly access the encoded data.</p>
+                
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>Website URLs and landing pages</li>
+                    <li>Contact information (vCard)</li>
+                    <li>WiFi network credentials</li>
+                    <li>Product information and pricing</li>
+                    <li>Event tickets and registration</li>
+                    <li>Payment information</li>
+                    <li>App download links</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
