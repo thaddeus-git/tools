@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online color picker with HEX, RGB, HSL, and CMYK formats. Generate color harmonies, shades, and check accessibility. No signup required.">
+    <meta name="keywords" content="color picker, hex color picker, rgb color picker, hsl color picker, color tool, color harmony, color shades">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Color Picker - HEX, RGB, HSL, CMYK | Free Online Tool">
+    <meta property="og:description" content="Free online color picker with multiple formats, color harmonies, and shades generator.">
+    
+    <title>Color Picker - HEX, RGB, HSL, CMYK | Free Online Tool</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Color Picker",
+      "description": "Free online color picker tool with HEX, RGB, HSL, and CMYK formats",
+      "applicationCategory": "DesignApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🎨 Color Picker</h1>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Title -->
+            <div class="tool-header">
+                <h2>Advanced Color Picker Tool</h2>
+                <p>Pick colors, generate harmonies, and get values in multiple formats</p>
+            </div>
+
+            <!-- Main Tool Area -->
+            <div class="tool-grid">
+                <!-- Left Column - Color Picker -->
+                <div class="picker-section">
+                    <!-- Color Square -->
+                    <div class="color-square-wrapper">
+                        <canvas id="colorSquare" class="color-square" width="300" height="300"></canvas>
+                        <div class="color-cursor" id="colorCursor"></div>
+                    </div>
+
+                    <!-- Hue Slider -->
+                    <div class="slider-wrapper">
+                        <label for="hueSlider" class="slider-label">Hue</label>
+                        <div class="hue-slider-track">
+                            <input type="range" id="hueSlider" class="hue-slider" min="0" max="360" value="217">
+                        </div>
+                    </div>
+
+                    <!-- Opacity Slider -->
+                    <div class="slider-wrapper">
+                        <label for="opacitySlider" class="slider-label">Opacity</label>
+                        <div class="opacity-slider-track">
+                            <input type="range" id="opacitySlider" class="opacity-slider" min="0" max="100" value="100">
+                            <span class="opacity-value" id="opacityValue">100%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Color Output -->
+                <div class="output-section">
+                    <!-- Selected Color Preview -->
+                    <div class="color-preview-card">
+                        <h3>Selected Color</h3>
+                        <div class="color-preview" id="colorPreview"></div>
+                    </div>
+
+                    <!-- Color Formats -->
+                    <div class="color-formats">
+                        <h3>Color Values</h3>
+                        
+                        <div class="format-group">
+                            <label for="hexInput">HEX</label>
+                            <div class="input-with-copy">
+                                <input type="text" id="hexInput" class="color-input" value="#3B82F6" readonly>
+                                <button class="copy-btn" data-target="hexInput" aria-label="Copy HEX value">
+                                    <span class="copy-icon">📋</span>
+                                    <span class="copy-text">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="format-group">
+                            <label for="rgbInput">RGB</label>
+                            <div class="input-with-copy">
+                                <input type="text" id="rgbInput" class="color-input" value="rgb(59, 130, 246)" readonly>
+                                <button class="copy-btn" data-target="rgbInput" aria-label="Copy RGB value">
+                                    <span class="copy-icon">📋</span>
+                                    <span class="copy-text">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="format-group">
+                            <label for="hslInput">HSL</label>
+                            <div class="input-with-copy">
+                                <input type="text" id="hslInput" class="color-input" value="hsl(217, 91%, 60%)" readonly>
+                                <button class="copy-btn" data-target="hslInput" aria-label="Copy HSL value">
+                                    <span class="copy-icon">📋</span>
+                                    <span class="copy-text">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="format-group">
+                            <label for="rgbaInput">RGBA</label>
+                            <div class="input-with-copy">
+                                <input type="text" id="rgbaInput" class="color-input" value="rgba(59, 130, 246, 1)" readonly>
+                                <button class="copy-btn" data-target="rgbaInput" aria-label="Copy RGBA value">
+                                    <span class="copy-icon">📋</span>
+                                    <span class="copy-text">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="format-group">
+                            <label for="hslaInput">HSLA</label>
+                            <div class="input-with-copy">
+                                <input type="text" id="hslaInput" class="color-input" value="hsla(217, 91%, 60%, 1)" readonly>
+                                <button class="copy-btn" data-target="hslaInput" aria-label="Copy HSLA value">
+                                    <span class="copy-icon">📋</span>
+                                    <span class="copy-text">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="format-group">
+                            <label for="cmykInput">CMYK</label>
+                            <div class="input-with-copy">
+                                <input type="text" id="cmykInput" class="color-input" value="cmyk(76%, 47%, 0%, 4%)" readonly>
+                                <button class="copy-btn" data-target="cmykInput" aria-label="Copy CMYK value">
+                                    <span class="copy-icon">📋</span>
+                                    <span class="copy-text">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color Shades -->
+            <section class="shades-section">
+                <h3>Color Shades</h3>
+                <p class="section-description">Click any shade to select it</p>
+                <div class="shades-grid" id="shadesGrid">
+                    <!-- Shades will be generated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Color Harmony -->
+            <section class="harmony-section">
+                <h3>Color Harmony</h3>
+                <div class="harmony-tabs">
+                    <button class="harmony-tab active" data-harmony="complementary">Complementary</button>
+                    <button class="harmony-tab" data-harmony="analogous">Analogous</button>
+                    <button class="harmony-tab" data-harmony="triadic">Triadic</button>
+                    <button class="harmony-tab" data-harmony="split-complementary">Split Complementary</button>
+                    <button class="harmony-tab" data-harmony="tetradic">Tetradic</button>
+                </div>
+                <div class="harmony-colors" id="harmonyColors">
+                    <!-- Harmony colors will be generated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Recent Colors -->
+            <section class="recent-section">
+                <div class="recent-header">
+                    <h3>Recent Colors</h3>
+                    <button class="clear-btn" id="clearRecent">Clear History</button>
+                </div>
+                <div class="recent-colors" id="recentColors">
+                    <!-- Recent colors will be loaded from localStorage -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Online Tools. Built with ❤️ for developers.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
