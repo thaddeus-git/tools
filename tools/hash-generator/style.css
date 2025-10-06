@@ -1,0 +1,88 @@
+/* ============================================
+   HASH GENERATOR - TOOL-SPECIFIC STYLES
+   Common styles loaded from /shared/styles/common.css
+   ============================================ */
+
+/* Reuse styles from Base64 tool */
+@import url('../base64/style.css');
+
+/* ============================================
+   HASH RESULTS
+   ============================================ */
+
+.hash-results {
+    margin-top: var(--space-6);
+}
+
+.hash-results h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.hash-item {
+    margin-bottom: var(--space-3);
+    padding: var(--space-4);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+}
+
+.hash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.hash-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+}
+
+.copy-hash-btn {
+    padding: var(--space-1) var(--space-2);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.copy-hash-btn:hover {
+    background: var(--border-color);
+    transform: translateY(-1px);
+}
+
+.hash-value {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    word-break: break-all;
+    line-height: 1.6;
+    user-select: all;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hash-results {
+    animation: fadeIn 0.3s ease;
+}
+
