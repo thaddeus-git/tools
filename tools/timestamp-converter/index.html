@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online timestamp converter. Convert Unix timestamps to human-readable dates and vice versa. No signup required.">
+    <meta name="keywords" content="timestamp converter, unix timestamp, epoch converter, date to timestamp, timestamp to date">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Timestamp Converter | deepv lab">
+    <meta property="og:description" content="Free online timestamp converter. Convert Unix timestamps to dates instantly.">
+    <meta property="og:url" content="https://deepvcode.com/timestamp-converter">
+    
+    <title>Timestamp Converter | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Timestamp Converter",
+      "description": "Free online timestamp conversion tool",
+      "url": "https://deepvcode.com/timestamp-converter",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>Timestamp Converter</h1>
+                <p class="tool-description">Convert Unix timestamps to human-readable dates and vice versa</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- Current Timestamp -->
+                <div class="current-time-section">
+                    <h3>Current Timestamp</h3>
+                    <div class="current-time-display">
+                        <div class="time-item">
+                            <span class="time-label">Unix Timestamp</span>
+                            <span class="time-value" id="currentTimestamp">0</span>
+                        </div>
+                        <div class="time-item">
+                            <span class="time-label">Human Readable</span>
+                            <span class="time-value" id="currentDate">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timestamp to Date -->
+                <div class="converter-section">
+                    <h3>Timestamp to Date</h3>
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="timestampInput" 
+                            class="converter-input" 
+                            placeholder="Enter Unix timestamp (e.g., 1609459200)"
+                        >
+                        <button class="btn btn-primary" id="convertToDateBtn">
+                            <span class="btn-icon">🔄</span>
+                            <span class="btn-text">Convert</span>
+                        </button>
+                    </div>
+                    <div class="result-box" id="timestampResult" style="display: none;">
+                        <div class="result-item">
+                            <span class="result-label">Local Time:</span>
+                            <span class="result-value" id="localTime">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">UTC Time:</span>
+                            <span class="result-value" id="utcTime">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">ISO 8601:</span>
+                            <span class="result-value" id="isoTime">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Relative:</span>
+                            <span class="result-value" id="relativeTime">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date to Timestamp -->
+                <div class="converter-section">
+                    <h3>Date to Timestamp</h3>
+                    <div class="input-group">
+                        <input 
+                            type="datetime-local" 
+                            id="dateInput" 
+                            class="converter-input"
+                        >
+                        <button class="btn btn-primary" id="convertToTimestampBtn">
+                            <span class="btn-icon">🔄</span>
+                            <span class="btn-text">Convert</span>
+                        </button>
+                    </div>
+                    <div class="result-box" id="dateResult" style="display: none;">
+                        <div class="result-item">
+                            <span class="result-label">Unix Timestamp:</span>
+                            <span class="result-value" id="unixTimestamp">-</span>
+                            <button class="copy-btn" id="copyTimestampBtn">📋</button>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Milliseconds:</span>
+                            <span class="result-value" id="milliseconds">-</span>
+                            <button class="copy-btn" id="copyMillisecondsBtn">📋</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>⏰ Current timestamp display (auto-updating)</li>
+                    <li>🔄 Convert Unix timestamp to date</li>
+                    <li>🔄 Convert date to Unix timestamp</li>
+                    <li>🌍 Local and UTC time display</li>
+                    <li>📅 ISO 8601 format</li>
+                    <li>⏱️ Relative time (e.g., "2 hours ago")</li>
+                    <li>📋 Copy timestamps to clipboard</li>
+                    <li>⚡ Instant conversion</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                
+                <h3>Timestamp to Date</h3>
+                <ol class="usage-steps">
+                    <li><strong>Enter Timestamp</strong> - Type Unix timestamp (seconds since 1970)</li>
+                    <li><strong>Convert</strong> - Click "Convert" button</li>
+                    <li><strong>View Results</strong> - See local time, UTC, ISO 8601, and relative time</li>
+                </ol>
+
+                <h3>Date to Timestamp</h3>
+                <ol class="usage-steps">
+                    <li><strong>Select Date</strong> - Choose date and time</li>
+                    <li><strong>Convert</strong> - Click "Convert" button</li>
+                    <li><strong>Copy Timestamp</strong> - Click copy button to copy result</li>
+                </ol>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="tool-info">
+                <h2>About Unix Timestamps</h2>
+                <p>A Unix timestamp is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), not counting leap seconds. It's a widely used standard for representing dates and times in computing.</p>
+                
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>Database date storage</li>
+                    <li>API timestamps</li>
+                    <li>Log file analysis</li>
+                    <li>Date calculations</li>
+                    <li>Cross-timezone coordination</li>
+                    <li>Programming and debugging</li>
+                </ul>
+
+                <h3>Timestamp Formats</h3>
+                <ul class="feature-list">
+                    <li><strong>Unix Timestamp (seconds):</strong> 1609459200</li>
+                    <li><strong>Milliseconds:</strong> 1609459200000</li>
+                    <li><strong>ISO 8601:</strong> 2021-01-01T00:00:00.000Z</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
