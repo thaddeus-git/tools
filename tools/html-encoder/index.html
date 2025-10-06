@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online HTML encoder/decoder. Encode and decode HTML entities. Convert special characters to HTML entities and vice versa. No signup required.">
+    <meta name="keywords" content="html encoder, html decoder, html entities, encode html, decode html, html escape, html unescape">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HTML Encoder/Decoder | deepv lab">
+    <meta property="og:description" content="Free online HTML encoder/decoder. Encode and decode HTML entities instantly.">
+    <meta property="og:url" content="https://deepvcode.com/html-encoder">
+    
+    <title>HTML Encoder/Decoder | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "HTML Encoder/Decoder",
+      "description": "Free online HTML encoding and decoding tool",
+      "url": "https://deepvcode.com/html-encoder",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>HTML Encoder/Decoder</h1>
+                <p class="tool-description">Encode and decode HTML entities. Convert special characters to HTML entities and vice versa.</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="encodeBtn">
+                        <span class="btn-icon">🔒</span>
+                        <span class="btn-text">Encode HTML</span>
+                    </button>
+                    <button class="btn btn-secondary" id="decodeBtn">
+                        <span class="btn-icon">🔓</span>
+                        <span class="btn-text">Decode HTML</span>
+                    </button>
+                    <button class="btn btn-secondary" id="swapBtn">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">Swap</span>
+                    </button>
+                </div>
+
+                <!-- Input/Output Grid -->
+                <div class="io-grid">
+                    <!-- Input Section -->
+                    <div class="io-section">
+                        <div class="section-header">
+                            <label for="inputText" class="section-label">Input</label>
+                            <div class="section-actions">
+                                <button class="btn-icon-small" id="clearInputBtn" title="Clear">🗑️</button>
+                                <button class="btn-icon-small" id="copyInputBtn" title="Copy">📋</button>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="inputText" 
+                            class="io-textarea" 
+                            placeholder="Enter HTML or text to encode/decode..."
+                            spellcheck="false"
+                        ></textarea>
+                        <div class="char-count" id="inputCount">0 characters</div>
+                    </div>
+
+                    <!-- Output Section -->
+                    <div class="io-section">
+                        <div class="section-header">
+                            <label for="outputText" class="section-label">Output</label>
+                            <div class="section-actions">
+                                <button class="btn-icon-small" id="clearOutputBtn" title="Clear">🗑️</button>
+                                <button class="btn-icon-small" id="copyOutputBtn" title="Copy">📋</button>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="outputText" 
+                            class="io-textarea" 
+                            placeholder="Result will appear here..."
+                            spellcheck="false"
+                            readonly
+                        ></textarea>
+                        <div class="char-count" id="outputCount">0 characters</div>
+                    </div>
+                </div>
+
+                <!-- Common Entities Reference -->
+                <div class="reference-section">
+                    <h3>Common HTML Entities</h3>
+                    <div class="entities-grid">
+                        <div class="entity-item">
+                            <span class="entity-char">&lt;</span>
+                            <span class="entity-code">&amp;lt;</span>
+                        </div>
+                        <div class="entity-item">
+                            <span class="entity-char">&gt;</span>
+                            <span class="entity-code">&amp;gt;</span>
+                        </div>
+                        <div class="entity-item">
+                            <span class="entity-char">&amp;</span>
+                            <span class="entity-code">&amp;amp;</span>
+                        </div>
+                        <div class="entity-item">
+                            <span class="entity-char">&quot;</span>
+                            <span class="entity-code">&amp;quot;</span>
+                        </div>
+                        <div class="entity-item">
+                            <span class="entity-char">&apos;</span>
+                            <span class="entity-code">&amp;apos;</span>
+                        </div>
+                        <div class="entity-item">
+                            <span class="entity-char">&nbsp;</span>
+                            <span class="entity-code">&amp;nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>🔒 Encode HTML (text to entities)</li>
+                    <li>🔓 Decode HTML (entities to text)</li>
+                    <li>🔄 Swap input and output</li>
+                    <li>📋 Copy input or output</li>
+                    <li>🗑️ Clear input or output</li>
+                    <li>📊 Character count display</li>
+                    <li>💾 Auto-save to localStorage</li>
+                    <li>⚡ Instant conversion</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                
+                <h3>Encode HTML</h3>
+                <ol class="usage-steps">
+                    <li><strong>Enter Text</strong> - Paste text with special characters</li>
+                    <li><strong>Click Encode</strong> - Click "Encode HTML" button</li>
+                    <li><strong>Copy Result</strong> - Copy the encoded HTML entities</li>
+                </ol>
+
+                <h3>Decode HTML</h3>
+                <ol class="usage-steps">
+                    <li><strong>Enter HTML</strong> - Paste HTML with entities</li>
+                    <li><strong>Click Decode</strong> - Click "Decode HTML" button</li>
+                    <li><strong>Copy Result</strong> - Copy the decoded text</li>
+                </ol>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="tool-info">
+                <h2>About HTML Entities</h2>
+                <p>HTML entities are used to display reserved characters in HTML. They prevent the browser from interpreting these characters as HTML code.</p>
+                
+                <h3>Why Use HTML Entities?</h3>
+                <ul class="feature-list">
+                    <li><strong>Display Special Characters</strong> - Show &lt;, &gt;, &amp; as text</li>
+                    <li><strong>Prevent XSS</strong> - Sanitize user input</li>
+                    <li><strong>Character Encoding</strong> - Display non-ASCII characters</li>
+                    <li><strong>Code Examples</strong> - Show HTML code in documentation</li>
+                </ul>
+
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>Displaying HTML code snippets</li>
+                    <li>Sanitizing user-generated content</li>
+                    <li>Email template creation</li>
+                    <li>XML/RSS feed generation</li>
+                    <li>Database storage of HTML content</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
