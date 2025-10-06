@@ -1,0 +1,426 @@
+/* ============================================
+   PASSWORD GENERATOR - TOOL-SPECIFIC STYLES
+   Common styles loaded from /shared/styles/common.css
+   ============================================ */
+
+/* ============================================
+   PASSWORD DISPLAY
+   ============================================ */
+
+.password-display {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    align-items: center;
+}
+
+.password-output {
+    flex: 1;
+    padding: var(--space-5);
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-text {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-all;
+    text-align: center;
+    user-select: all;
+}
+
+.password-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* ============================================
+   STRENGTH INDICATOR
+   ============================================ */
+
+.strength-indicator {
+    margin-bottom: var(--space-6);
+}
+
+.strength-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.strength-bar {
+    height: 8px;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: var(--space-2);
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    transition: all var(--transition-base);
+    border-radius: var(--radius-sm);
+}
+
+.strength-fill.weak {
+    width: 25%;
+    background: var(--color-error);
+}
+
+.strength-fill.fair {
+    width: 50%;
+    background: var(--color-warning);
+}
+
+.strength-fill.good {
+    width: 75%;
+    background: #3B82F6;
+}
+
+.strength-fill.strong {
+    width: 100%;
+    background: var(--color-success);
+}
+
+.strength-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.strength-text.weak {
+    color: var(--color-error);
+}
+
+.strength-text.fair {
+    color: var(--color-warning);
+}
+
+.strength-text.good {
+    color: #3B82F6;
+}
+
+.strength-text.strong {
+    color: var(--color-success);
+}
+
+/* ============================================
+   OPTIONS SECTION
+   ============================================ */
+
+.options-section {
+    margin-bottom: var(--space-6);
+}
+
+.options-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.option-group {
+    margin-bottom: var(--space-4);
+}
+
+.option-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.length-value {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--color-primary-500);
+}
+
+/* ============================================
+   SLIDER
+   ============================================ */
+
+.slider {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--color-primary-500);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--color-primary-500);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: all var(--transition-base);
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: var(--space-1);
+}
+
+/* ============================================
+   CHECKBOXES
+   ============================================ */
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-base);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.checkbox-label:hover {
+    border-color: var(--color-primary-500);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-top: 2px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.checkbox-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.checkbox-title {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.checkbox-example {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    border-radius: var(--radius-base);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--color-primary-500);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-600);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--border-color);
+    transform: translateY(-1px);
+}
+
+.btn-icon {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    font-size: 1.25rem;
+}
+
+.btn-large {
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    font-size: 1rem;
+}
+
+.btn-small {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.75rem;
+}
+
+/* ============================================
+   BATCH SECTION
+   ============================================ */
+
+.batch-section {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-color);
+}
+
+.batch-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.batch-controls {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.batch-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.batch-input {
+    width: 80px;
+    padding: var(--space-2);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-base);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.batch-output {
+    margin-top: var(--space-4);
+}
+
+.batch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.batch-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.batch-list {
+    width: 100%;
+    padding: var(--space-3);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-base);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    resize: vertical;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .password-display {
+        flex-direction: column;
+    }
+    
+    .password-actions {
+        flex-direction: row;
+        width: 100%;
+    }
+    
+    .password-actions .btn {
+        flex: 1;
+    }
+    
+    .password-text {
+        font-size: 1.125rem;
+    }
+    
+    .batch-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .batch-label {
+        justify-content: space-between;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.password-output.generated {
+    animation: pulse 0.3s ease;
+}
+

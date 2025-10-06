@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online password generator. Create strong, secure, random passwords with customizable options. No signup required.">
+    <meta name="keywords" content="password generator, random password, secure password, strong password, password creator, generate password online">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Password Generator | deepv lab">
+    <meta property="og:description" content="Free online password generator. Create strong, secure, random passwords instantly.">
+    <meta property="og:url" content="https://deepvcode.com/password-generator">
+    
+    <title>Password Generator | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Password Generator",
+      "description": "Free online password generator tool",
+      "url": "https://deepvcode.com/password-generator",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>Password Generator</h1>
+                <p class="tool-description">Create strong, secure, random passwords with customizable options</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- Generated Password Display -->
+                <div class="password-display">
+                    <div class="password-output" id="passwordOutput">
+                        <span class="password-text" id="passwordText">Click Generate to create a password</span>
+                    </div>
+                    <div class="password-actions">
+                        <button class="btn btn-icon" id="copyBtn" title="Copy password">
+                            <span class="btn-icon">📋</span>
+                        </button>
+                        <button class="btn btn-icon" id="regenerateBtn" title="Generate new password">
+                            <span class="btn-icon">🔄</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Password Strength Indicator -->
+                <div class="strength-indicator">
+                    <div class="strength-label">Password Strength:</div>
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
+                    <div class="strength-text" id="strengthText">-</div>
+                </div>
+
+                <!-- Options -->
+                <div class="options-section">
+                    <h3>Options</h3>
+                    
+                    <!-- Length Slider -->
+                    <div class="option-group">
+                        <label class="option-label">
+                            <span>Password Length</span>
+                            <span class="length-value" id="lengthValue">16</span>
+                        </label>
+                        <input 
+                            type="range" 
+                            id="lengthSlider" 
+                            min="4" 
+                            max="64" 
+                            value="16" 
+                            class="slider"
+                        >
+                        <div class="slider-labels">
+                            <span>4</span>
+                            <span>64</span>
+                        </div>
+                    </div>
+
+                    <!-- Character Options -->
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="uppercaseCheck" checked>
+                            <span class="checkbox-text">
+                                <span class="checkbox-title">Uppercase Letters</span>
+                                <span class="checkbox-example">A-Z</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="lowercaseCheck" checked>
+                            <span class="checkbox-text">
+                                <span class="checkbox-title">Lowercase Letters</span>
+                                <span class="checkbox-example">a-z</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="numbersCheck" checked>
+                            <span class="checkbox-text">
+                                <span class="checkbox-title">Numbers</span>
+                                <span class="checkbox-example">0-9</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="symbolsCheck" checked>
+                            <span class="checkbox-text">
+                                <span class="checkbox-title">Symbols</span>
+                                <span class="checkbox-example">!@#$%^&*</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Advanced Options -->
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="excludeSimilarCheck">
+                            <span class="checkbox-text">
+                                <span class="checkbox-title">Exclude Similar Characters</span>
+                                <span class="checkbox-example">i, l, 1, L, o, 0, O</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="excludeAmbiguousCheck">
+                            <span class="checkbox-text">
+                                <span class="checkbox-title">Exclude Ambiguous Characters</span>
+                                <span class="checkbox-example">{ } [ ] ( ) / \ ' " ` ~ , ; : . < ></span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button class="btn btn-primary btn-large" id="generateBtn">
+                    <span class="btn-icon">🔐</span>
+                    <span class="btn-text">Generate Password</span>
+                </button>
+
+                <!-- Batch Generation -->
+                <div class="batch-section">
+                    <h3>Generate Multiple Passwords</h3>
+                    <div class="batch-controls">
+                        <label class="batch-label">
+                            <span>Number of passwords:</span>
+                            <input type="number" id="batchCount" min="1" max="50" value="10" class="batch-input">
+                        </label>
+                        <button class="btn btn-secondary" id="batchGenerateBtn">
+                            <span class="btn-icon">📋</span>
+                            <span class="btn-text">Generate Batch</span>
+                        </button>
+                    </div>
+                    <div class="batch-output" id="batchOutput" style="display: none;">
+                        <div class="batch-header">
+                            <span class="batch-title">Generated Passwords</span>
+                            <button class="btn btn-small" id="copyAllBtn">
+                                <span class="btn-icon">📋</span>
+                                <span class="btn-text">Copy All</span>
+                            </button>
+                        </div>
+                        <textarea id="batchList" class="batch-list" readonly rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>🔐 Generate strong, random passwords</li>
+                    <li>⚙️ Customizable length (4-64 characters)</li>
+                    <li>🔤 Include/exclude uppercase, lowercase, numbers, symbols</li>
+                    <li>🚫 Exclude similar or ambiguous characters</li>
+                    <li>💪 Real-time password strength indicator</li>
+                    <li>📋 One-click copy to clipboard</li>
+                    <li>🔄 Quick regenerate button</li>
+                    <li>📦 Batch generation (up to 50 passwords)</li>
+                    <li>🔒 Client-side generation (secure, no server)</li>
+                    <li>🌙 Dark mode support</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Adjust Options</strong> - Set password length and character types</li>
+                    <li><strong>Generate</strong> - Click "Generate Password" button</li>
+                    <li><strong>Check Strength</strong> - View password strength indicator</li>
+                    <li><strong>Copy</strong> - Click copy button to copy password</li>
+                    <li><strong>Regenerate</strong> - Click regenerate for a new password</li>
+                </ol>
+            </section>
+
+            <!-- Password Tips -->
+            <section class="tool-info">
+                <h2>Password Security Tips</h2>
+                <ul class="feature-list">
+                    <li>Use at least 12-16 characters for strong passwords</li>
+                    <li>Include a mix of uppercase, lowercase, numbers, and symbols</li>
+                    <li>Avoid using personal information (names, birthdays, etc.)</li>
+                    <li>Use unique passwords for each account</li>
+                    <li>Consider using a password manager</li>
+                    <li>Enable two-factor authentication when available</li>
+                    <li>Change passwords regularly, especially for important accounts</li>
+                    <li>Never share passwords via email or text</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
