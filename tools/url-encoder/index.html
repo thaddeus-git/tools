@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online URL encoder and decoder. Encode URLs for safe transmission or decode encoded URLs. No signup required.">
+    <meta name="keywords" content="url encoder, url decoder, encode url, decode url, url encode online, percent encoding, uri encoder">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="URL Encoder & Decoder | deepv lab">
+    <meta property="og:description" content="Free online URL encoder and decoder. Encode and decode URLs instantly.">
+    <meta property="og:url" content="https://deepvcode.com/url-encoder">
+    
+    <title>URL Encoder & Decoder | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "URL Encoder & Decoder",
+      "description": "Free online URL encoder and decoder tool",
+      "url": "https://deepvcode.com/url-encoder",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>URL Encoder & Decoder</h1>
+                <p class="tool-description">Encode URLs for safe transmission or decode encoded URLs</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- Mode Tabs -->
+                <div class="mode-tabs">
+                    <button class="mode-tab active" data-mode="encode">
+                        <span class="tab-icon">🔒</span>
+                        <span class="tab-text">Encode</span>
+                    </button>
+                    <button class="mode-tab" data-mode="decode">
+                        <span class="tab-icon">🔓</span>
+                        <span class="tab-text">Decode</span>
+                    </button>
+                </div>
+
+                <!-- Encode Mode -->
+                <div class="mode-content" id="encodeMode">
+                    <div class="input-section">
+                        <label for="encodeInput" class="section-label">URL or Text to Encode</label>
+                        <textarea 
+                            id="encodeInput" 
+                            class="text-area" 
+                            placeholder="Enter URL or text to encode...
+Example: https://example.com/search?q=hello world&lang=en"
+                            rows="6"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="encodeCharCount">0 characters</span>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="encodeBtn">
+                            <span class="btn-icon">🔒</span>
+                            <span class="btn-text">Encode URL</span>
+                        </button>
+                        <button class="btn btn-secondary" id="encodeComponentBtn">
+                            <span class="btn-icon">🔐</span>
+                            <span class="btn-text">Encode Component</span>
+                        </button>
+                    </div>
+
+                    <div class="output-section" id="encodeOutput" style="display: none;">
+                        <div class="output-header">
+                            <label class="section-label">Encoded Output</label>
+                            <div class="output-actions">
+                                <button class="btn btn-secondary btn-small" id="copyEncodeBtn">
+                                    <span class="btn-icon">📋</span>
+                                    <span class="btn-text">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="encodeOutputText" 
+                            class="text-area output-area" 
+                            readonly
+                            rows="6"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="encodeOutputCount">0 characters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decode Mode -->
+                <div class="mode-content" id="decodeMode" style="display: none;">
+                    <div class="input-section">
+                        <label for="decodeInput" class="section-label">Encoded URL to Decode</label>
+                        <textarea 
+                            id="decodeInput" 
+                            class="text-area" 
+                            placeholder="Enter encoded URL to decode...
+Example: https%3A%2F%2Fexample.com%2Fsearch%3Fq%3Dhello%20world"
+                            rows="6"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="decodeCharCount">0 characters</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="decodeBtn">
+                        <span class="btn-icon">🔓</span>
+                        <span class="btn-text">Decode URL</span>
+                    </button>
+
+                    <div class="output-section" id="decodeOutput" style="display: none;">
+                        <div class="output-header">
+                            <label class="section-label">Decoded Output</label>
+                            <div class="output-actions">
+                                <button class="btn btn-secondary btn-small" id="copyDecodeBtn">
+                                    <span class="btn-icon">📋</span>
+                                    <span class="btn-text">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="decodeOutputText" 
+                            class="text-area output-area" 
+                            readonly
+                            rows="6"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="decodeOutputCount">0 characters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Box -->
+                <div class="info-box">
+                    <h3>💡 What's the difference?</h3>
+                    <ul>
+                        <li><strong>Encode URL:</strong> Encodes the entire URL (preserves :, /, ?, &, =)</li>
+                        <li><strong>Encode Component:</strong> Encodes URL parameters/values (encodes all special characters)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>🔒 Encode URLs for safe transmission</li>
+                    <li>🔓 Decode encoded URLs back to readable format</li>
+                    <li>🔐 Encode URL components (parameters, values)</li>
+                    <li>📋 Copy encoded/decoded text to clipboard</li>
+                    <li>⚡ Instant encoding and decoding</li>
+                    <li>💾 Auto-save input to localStorage</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                
+                <h3>Encoding</h3>
+                <ol class="usage-steps">
+                    <li><strong>Select Encode Tab</strong> - Click "Encode" at the top</li>
+                    <li><strong>Enter URL</strong> - Paste or type your URL or text</li>
+                    <li><strong>Choose Method</strong> - Click "Encode URL" or "Encode Component"</li>
+                    <li><strong>Copy Result</strong> - Click copy button to copy encoded URL</li>
+                </ol>
+
+                <h3>Decoding</h3>
+                <ol class="usage-steps">
+                    <li><strong>Select Decode Tab</strong> - Click "Decode" at the top</li>
+                    <li><strong>Enter Encoded URL</strong> - Paste encoded URL</li>
+                    <li><strong>Decode</strong> - Click "Decode URL" button</li>
+                    <li><strong>Copy Result</strong> - Click copy button to copy decoded URL</li>
+                </ol>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="tool-info">
+                <h2>About URL Encoding</h2>
+                <p>URL encoding (also called percent encoding) converts characters into a format that can be transmitted over the Internet. URLs can only contain certain characters from the ASCII set. Other characters must be encoded.</p>
+                
+                <h3>Common Encoded Characters</h3>
+                <ul class="feature-list">
+                    <li>Space → <code>%20</code> or <code>+</code></li>
+                    <li>! → <code>%21</code></li>
+                    <li># → <code>%23</code></li>
+                    <li>$ → <code>%24</code></li>
+                    <li>& → <code>%26</code></li>
+                    <li>= → <code>%3D</code></li>
+                    <li>? → <code>%3F</code></li>
+                </ul>
+
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>Encoding query parameters in URLs</li>
+                    <li>Passing URLs as parameters</li>
+                    <li>Encoding form data</li>
+                    <li>API request parameters</li>
+                    <li>Email links with parameters</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
