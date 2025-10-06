@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online Base64 encoder and decoder. Encode text to Base64 or decode Base64 to text. Support for files and images. No signup required.">
+    <meta name="keywords" content="base64 encoder, base64 decoder, base64 encode, base64 decode, encode base64, decode base64, base64 converter, base64 online">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Base64 Encoder & Decoder | deepv lab">
+    <meta property="og:description" content="Free online Base64 encoder and decoder. Encode text to Base64 or decode Base64 to text instantly.">
+    <meta property="og:url" content="https://deepvcode.com/base64">
+    
+    <title>Base64 Encoder & Decoder | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Base64 Encoder & Decoder",
+      "description": "Free online Base64 encoder and decoder tool",
+      "url": "https://deepvcode.com/base64",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>Base64 Encoder & Decoder</h1>
+                <p class="tool-description">Encode text to Base64 or decode Base64 to text. Support for files and images.</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- Mode Tabs -->
+                <div class="mode-tabs">
+                    <button class="mode-tab active" data-mode="encode">
+                        <span class="tab-icon">🔒</span>
+                        <span class="tab-text">Encode</span>
+                    </button>
+                    <button class="mode-tab" data-mode="decode">
+                        <span class="tab-icon">🔓</span>
+                        <span class="tab-text">Decode</span>
+                    </button>
+                </div>
+
+                <!-- Encode Mode -->
+                <div class="mode-content" id="encodeMode">
+                    <!-- Input Type Selector -->
+                    <div class="input-type-selector">
+                        <label class="radio-label">
+                            <input type="radio" name="inputType" value="text" checked>
+                            <span>📝 Text</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="inputType" value="file">
+                            <span>📁 File</span>
+                        </label>
+                    </div>
+
+                    <!-- Text Input -->
+                    <div class="input-section" id="textInput">
+                        <label for="encodeText" class="section-label">Text to Encode</label>
+                        <textarea 
+                            id="encodeText" 
+                            class="text-area" 
+                            placeholder="Enter text to encode to Base64..."
+                            rows="8"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="encodeCharCount">0 characters</span>
+                        </div>
+                    </div>
+
+                    <!-- File Input -->
+                    <div class="input-section" id="fileInput" style="display: none;">
+                        <label class="section-label">File to Encode</label>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <input type="file" id="fileInputElement" hidden>
+                            <div class="upload-placeholder">
+                                <span class="upload-icon">📁</span>
+                                <p class="upload-text">Click to select a file or drag and drop</p>
+                                <p class="upload-hint">Maximum file size: 5MB</p>
+                            </div>
+                            <div class="file-info" id="fileInfo" style="display: none;">
+                                <span class="file-icon">📄</span>
+                                <div class="file-details">
+                                    <p class="file-name" id="fileName"></p>
+                                    <p class="file-size" id="fileSize"></p>
+                                </div>
+                                <button class="remove-file-btn" id="removeFileBtn">✕</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <button class="btn btn-primary btn-large" id="encodeBtn">
+                        <span class="btn-icon">🔒</span>
+                        <span class="btn-text">Encode to Base64</span>
+                    </button>
+
+                    <!-- Output -->
+                    <div class="output-section" id="encodeOutput" style="display: none;">
+                        <div class="output-header">
+                            <label class="section-label">Base64 Output</label>
+                            <div class="output-actions">
+                                <button class="btn btn-secondary btn-small" id="copyEncodeBtn">
+                                    <span class="btn-icon">📋</span>
+                                    <span class="btn-text">Copy</span>
+                                </button>
+                                <button class="btn btn-secondary btn-small" id="downloadEncodeBtn">
+                                    <span class="btn-icon">💾</span>
+                                    <span class="btn-text">Download</span>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="encodeOutputText" 
+                            class="text-area output-area" 
+                            readonly
+                            rows="8"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="encodeOutputCount">0 characters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decode Mode -->
+                <div class="mode-content" id="decodeMode" style="display: none;">
+                    <!-- Input -->
+                    <div class="input-section">
+                        <label for="decodeText" class="section-label">Base64 to Decode</label>
+                        <textarea 
+                            id="decodeText" 
+                            class="text-area" 
+                            placeholder="Enter Base64 string to decode..."
+                            rows="8"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="decodeCharCount">0 characters</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <button class="btn btn-primary btn-large" id="decodeBtn">
+                        <span class="btn-icon">🔓</span>
+                        <span class="btn-text">Decode from Base64</span>
+                    </button>
+
+                    <!-- Output -->
+                    <div class="output-section" id="decodeOutput" style="display: none;">
+                        <div class="output-header">
+                            <label class="section-label">Decoded Output</label>
+                            <div class="output-actions">
+                                <button class="btn btn-secondary btn-small" id="copyDecodeBtn">
+                                    <span class="btn-icon">📋</span>
+                                    <span class="btn-text">Copy</span>
+                                </button>
+                                <button class="btn btn-secondary btn-small" id="downloadDecodeBtn">
+                                    <span class="btn-icon">💾</span>
+                                    <span class="btn-text">Download</span>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="decodeOutputText" 
+                            class="text-area output-area" 
+                            readonly
+                            rows="8"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="decodeOutputCount">0 characters</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>🔒 Encode text to Base64 format</li>
+                    <li>🔓 Decode Base64 to plain text</li>
+                    <li>📁 Encode files to Base64 (up to 5MB)</li>
+                    <li>📋 Copy encoded/decoded text to clipboard</li>
+                    <li>💾 Download results as text file</li>
+                    <li>⚡ Fast processing with instant results</li>
+                    <li>🔒 Client-side processing (your data never leaves your browser)</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                
+                <h3>Encoding</h3>
+                <ol class="usage-steps">
+                    <li><strong>Select Mode</strong> - Click "Encode" tab</li>
+                    <li><strong>Choose Input Type</strong> - Select "Text" or "File"</li>
+                    <li><strong>Enter Data</strong> - Type text or upload a file</li>
+                    <li><strong>Encode</strong> - Click "Encode to Base64" button</li>
+                    <li><strong>Copy or Download</strong> - Use buttons to copy or save result</li>
+                </ol>
+
+                <h3>Decoding</h3>
+                <ol class="usage-steps">
+                    <li><strong>Select Mode</strong> - Click "Decode" tab</li>
+                    <li><strong>Enter Base64</strong> - Paste Base64 string</li>
+                    <li><strong>Decode</strong> - Click "Decode from Base64" button</li>
+                    <li><strong>Copy or Download</strong> - Use buttons to copy or save result</li>
+                </ol>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="tool-info">
+                <h2>About Base64</h2>
+                <p>Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format. It's commonly used to encode data that needs to be stored or transferred over media designed to handle text.</p>
+                
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>Embedding images in HTML/CSS (data URIs)</li>
+                    <li>Encoding email attachments (MIME)</li>
+                    <li>Storing binary data in JSON/XML</li>
+                    <li>API authentication tokens</li>
+                    <li>URL-safe data transmission</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
