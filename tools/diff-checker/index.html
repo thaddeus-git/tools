@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online diff checker. Compare two texts and see differences highlighted. Perfect for code review and text comparison. No signup required.">
+    <meta name="keywords" content="diff checker, text compare, compare text, diff tool, text difference, code compare, file compare">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Diff Checker | deepv lab">
+    <meta property="og:description" content="Free online diff checker. Compare texts and see differences highlighted.">
+    <meta property="og:url" content="https://deepvcode.com/diff-checker">
+    
+    <title>Diff Checker | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Diff library -->
+    <script src="https://cdn.jsdelivr.net/npm/diff@5.1.0/dist/diff.min.js"></script>
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Diff Checker",
+      "description": "Free online text comparison tool",
+      "url": "https://deepvcode.com/diff-checker",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container-fluid">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>Diff Checker</h1>
+                <p class="tool-description">Compare two texts and see differences highlighted. Perfect for code review and text comparison.</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- Compare Button -->
+                <div class="compare-section">
+                    <button class="btn btn-primary btn-large" id="compareBtn">
+                        <span class="btn-icon">🔍</span>
+                        <span class="btn-text">Compare Texts</span>
+                    </button>
+                    <div class="options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="ignoreWhitespace">
+                            <span>Ignore whitespace</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="ignoreCase">
+                            <span>Ignore case</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Input Grid -->
+                <div class="diff-grid">
+                    <!-- Original Text -->
+                    <div class="diff-panel">
+                        <div class="panel-header">
+                            <h3>📄 Original Text</h3>
+                            <span class="line-count" id="originalLineCount">0 lines</span>
+                        </div>
+                        <textarea 
+                            id="originalText" 
+                            class="diff-textarea" 
+                            placeholder="Paste original text here..."
+                            spellcheck="false"
+                        ></textarea>
+                    </div>
+
+                    <!-- Modified Text -->
+                    <div class="diff-panel">
+                        <div class="panel-header">
+                            <h3>📝 Modified Text</h3>
+                            <span class="line-count" id="modifiedLineCount">0 lines</span>
+                        </div>
+                        <textarea 
+                            id="modifiedText" 
+                            class="diff-textarea" 
+                            placeholder="Paste modified text here..."
+                            spellcheck="false"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <div class="results-header">
+                        <h3>Comparison Results</h3>
+                        <div class="stats">
+                            <span class="stat-badge added" id="addedCount">+0</span>
+                            <span class="stat-badge removed" id="removedCount">-0</span>
+                            <span class="stat-badge unchanged" id="unchangedCount">0 unchanged</span>
+                        </div>
+                    </div>
+
+                    <!-- Diff Output -->
+                    <div class="diff-output" id="diffOutput"></div>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>🔍 Compare two texts side by side</li>
+                    <li>🎨 Highlighted differences (additions, deletions, changes)</li>
+                    <li>📊 Statistics (added, removed, unchanged lines)</li>
+                    <li>⚙️ Ignore whitespace option</li>
+                    <li>⚙️ Ignore case option</li>
+                    <li>📝 Line-by-line comparison</li>
+                    <li>💾 Auto-save texts to localStorage</li>
+                    <li>⚡ Fast comparison</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Paste Original Text</strong> - Paste the original text in the left panel</li>
+                    <li><strong>Paste Modified Text</strong> - Paste the modified text in the right panel</li>
+                    <li><strong>Set Options</strong> - Choose to ignore whitespace or case (optional)</li>
+                    <li><strong>Compare</strong> - Click "Compare Texts" button</li>
+                    <li><strong>Review Differences</strong> - See highlighted additions, deletions, and changes</li>
+                </ol>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="tool-info">
+                <h2>About Diff Checking</h2>
+                <p>Diff checking compares two texts and highlights the differences between them. It's commonly used in software development for code review, version control, and tracking changes.</p>
+                
+                <h3>Color Legend</h3>
+                <ul class="feature-list">
+                    <li><span class="legend-box added"></span> <strong>Green</strong> - Added lines (present in modified, not in original)</li>
+                    <li><span class="legend-box removed"></span> <strong>Red</strong> - Removed lines (present in original, not in modified)</li>
+                    <li><span class="legend-box unchanged"></span> <strong>Gray</strong> - Unchanged lines (same in both)</li>
+                </ul>
+
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>Code review and comparison</li>
+                    <li>Document version comparison</li>
+                    <li>Configuration file changes</li>
+                    <li>Text editing and proofreading</li>
+                    <li>Merge conflict resolution</li>
+                    <li>API response comparison</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
