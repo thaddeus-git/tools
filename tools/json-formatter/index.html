@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online JSON formatter and validator. Format, beautify, minify, and validate JSON data with syntax highlighting. No signup required.">
+    <meta name="keywords" content="json formatter, json validator, json beautifier, json minifier, format json, validate json, json syntax, json online">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JSON Formatter & Validator | deepv lab">
+    <meta property="og:description" content="Free online JSON formatter and validator with syntax highlighting. Format, beautify, and validate JSON instantly.">
+    <meta property="og:url" content="https://deepvcode.com/json-formatter">
+    
+    <title>JSON Formatter & Validator | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "JSON Formatter",
+      "description": "Free online JSON formatter and validator with syntax highlighting",
+      "url": "https://deepvcode.com/json-formatter",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>JSON Formatter & Validator</h1>
+                <p class="tool-description">Format, beautify, minify, and validate JSON data with syntax highlighting</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- Action Buttons -->
+                <div class="action-bar">
+                    <button class="btn btn-primary" id="formatBtn">
+                        <span class="btn-icon">✨</span>
+                        <span class="btn-text">Format</span>
+                    </button>
+                    <button class="btn btn-secondary" id="minifyBtn">
+                        <span class="btn-icon">📦</span>
+                        <span class="btn-text">Minify</span>
+                    </button>
+                    <button class="btn btn-secondary" id="validateBtn">
+                        <span class="btn-icon">✓</span>
+                        <span class="btn-text">Validate</span>
+                    </button>
+                    <button class="btn btn-secondary" id="clearBtn">
+                        <span class="btn-icon">🗑️</span>
+                        <span class="btn-text">Clear</span>
+                    </button>
+                    <div class="spacer"></div>
+                    <button class="btn btn-secondary" id="copyBtn">
+                        <span class="btn-icon">📋</span>
+                        <span class="btn-text">Copy</span>
+                    </button>
+                    <button class="btn btn-secondary" id="downloadBtn">
+                        <span class="btn-icon">💾</span>
+                        <span class="btn-text">Download</span>
+                    </button>
+                </div>
+
+                <!-- Editor Grid -->
+                <div class="editor-grid">
+                    <!-- Input Editor -->
+                    <div class="editor-panel">
+                        <div class="editor-header">
+                            <h3>Input JSON</h3>
+                            <div class="editor-actions">
+                                <label for="fileInput" class="file-upload-btn">
+                                    <span>📁 Upload File</span>
+                                    <input type="file" id="fileInput" accept=".json" hidden>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="editor-wrapper">
+                            <textarea 
+                                id="inputEditor" 
+                                class="json-editor" 
+                                placeholder='Paste your JSON here or upload a file...
+
+Example:
+{"name":"John","age":30,"city":"New York"}'
+                                spellcheck="false"
+                            ></textarea>
+                            <div class="line-numbers" id="inputLineNumbers"></div>
+                        </div>
+                        <div class="editor-footer">
+                            <span class="char-count" id="inputCharCount">0 characters</span>
+                        </div>
+                    </div>
+
+                    <!-- Output Editor -->
+                    <div class="editor-panel">
+                        <div class="editor-header">
+                            <h3>Output</h3>
+                            <div class="status-badge" id="statusBadge">
+                                <span class="status-icon">⏳</span>
+                                <span class="status-text">Ready</span>
+                            </div>
+                        </div>
+                        <div class="editor-wrapper">
+                            <div id="outputEditor" class="json-output"></div>
+                            <div class="line-numbers" id="outputLineNumbers"></div>
+                        </div>
+                        <div class="editor-footer">
+                            <span class="char-count" id="outputCharCount">0 characters</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Display -->
+                <div class="error-panel" id="errorPanel" style="display: none;">
+                    <div class="error-header">
+                        <span class="error-icon">⚠️</span>
+                        <span class="error-title">JSON Error</span>
+                    </div>
+                    <div class="error-message" id="errorMessage"></div>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>✨ Format and beautify JSON with proper indentation</li>
+                    <li>✓ Validate JSON syntax with detailed error messages</li>
+                    <li>🎨 Syntax highlighting for better readability</li>
+                    <li>📦 Minify JSON to reduce file size</li>
+                    <li>📋 Copy formatted JSON to clipboard</li>
+                    <li>💾 Download as .json file</li>
+                    <li>📁 Upload JSON files (up to 10MB)</li>
+                    <li>🔢 Line numbers for easy navigation</li>
+                    <li>⚡ Fast processing for large files</li>
+                    <li>🌙 Dark mode support</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Paste or Upload JSON</strong> - Enter your JSON data in the input area or upload a .json file</li>
+                    <li><strong>Format</strong> - Click "Format" to beautify your JSON with proper indentation</li>
+                    <li><strong>Validate</strong> - Click "Validate" to check for syntax errors</li>
+                    <li><strong>Minify</strong> - Click "Minify" to compress JSON by removing whitespace</li>
+                    <li><strong>Copy or Download</strong> - Use "Copy" to copy to clipboard or "Download" to save as file</li>
+                </ol>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="tool-info">
+                <h2>About JSON</h2>
+                <p>JSON (JavaScript Object Notation) is a lightweight data-interchange format that's easy for humans to read and write, and easy for machines to parse and generate. It's widely used for APIs, configuration files, and data storage.</p>
+                
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>API response formatting and debugging</li>
+                    <li>Configuration file validation</li>
+                    <li>Data transformation and migration</li>
+                    <li>Log file analysis</li>
+                    <li>Database export/import preparation</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+

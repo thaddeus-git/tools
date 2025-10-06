@@ -1,0 +1,376 @@
+/* ============================================
+   JSON FORMATTER - TOOL-SPECIFIC STYLES
+   Common styles loaded from /shared/styles/common.css
+   ============================================ */
+
+/* ============================================
+   ACTION BAR
+   ============================================ */
+
+.action-bar {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    border-radius: var(--radius-base);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--color-primary-500);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-600);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--border-color);
+    transform: translateY(-1px);
+}
+
+.btn-icon {
+    font-size: 1rem;
+}
+
+/* ============================================
+   EDITOR GRID
+   ============================================ */
+
+.editor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+@media (max-width: 1024px) {
+    .editor-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   EDITOR PANEL
+   ============================================ */
+
+.editor-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.editor-header h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.editor-actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.file-upload-btn {
+    padding: var(--space-1) var(--space-3);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.file-upload-btn:hover {
+    background: var(--border-color);
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+}
+
+.status-badge.valid {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-success);
+}
+
+.status-badge.invalid {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--color-error);
+}
+
+.status-icon {
+    font-size: 0.875rem;
+}
+
+/* ============================================
+   EDITOR WRAPPER
+   ============================================ */
+
+.editor-wrapper {
+    position: relative;
+    display: flex;
+}
+
+.line-numbers {
+    padding: var(--space-3) var(--space-2);
+    background: var(--bg-primary);
+    border-right: 1px solid var(--border-color);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-align: right;
+    user-select: none;
+    line-height: 1.5;
+    min-width: 40px;
+}
+
+.json-editor {
+    flex: 1;
+    min-height: 400px;
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-card);
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+}
+
+.json-editor::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.json-output {
+    flex: 1;
+    min-height: 400px;
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-card);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow: auto;
+    white-space: pre;
+}
+
+/* ============================================
+   SYNTAX HIGHLIGHTING
+   ============================================ */
+
+.json-key {
+    color: #0ea5e9;
+}
+
+.json-string {
+    color: #10b981;
+}
+
+.json-number {
+    color: #f59e0b;
+}
+
+.json-boolean {
+    color: #8b5cf6;
+}
+
+.json-null {
+    color: #ef4444;
+}
+
+.json-punctuation {
+    color: var(--text-secondary);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .json-key {
+    color: #38bdf8;
+}
+
+[data-theme="dark"] .json-string {
+    color: #34d399;
+}
+
+[data-theme="dark"] .json-number {
+    color: #fbbf24;
+}
+
+[data-theme="dark"] .json-boolean {
+    color: #a78bfa;
+}
+
+[data-theme="dark"] .json-null {
+    color: #f87171;
+}
+
+/* ============================================
+   EDITOR FOOTER
+   ============================================ */
+
+.editor-footer {
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   ERROR PANEL
+   ============================================ */
+
+.error-panel {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--color-error);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.error-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.error-icon {
+    font-size: 1.25rem;
+}
+
+.error-title {
+    font-weight: 600;
+    color: var(--color-error);
+}
+
+.error-message {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* ============================================
+   FEATURE LIST & USAGE STEPS
+   ============================================ */
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list li {
+    padding: var(--space-2) 0;
+    color: var(--text-secondary);
+}
+
+.usage-steps {
+    padding-left: var(--space-6);
+}
+
+.usage-steps li {
+    padding: var(--space-2) 0;
+    color: var(--text-secondary);
+}
+
+.usage-steps strong {
+    color: var(--text-primary);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .action-bar {
+        gap: var(--space-1);
+    }
+    
+    .btn {
+        padding: var(--space-2) var(--space-3);
+        font-size: 0.75rem;
+    }
+    
+    .btn-text {
+        display: none;
+    }
+    
+    .btn-icon {
+        font-size: 1.125rem;
+    }
+    
+    .json-editor,
+    .json-output {
+        min-height: 300px;
+        font-size: 0.75rem;
+    }
+    
+    .line-numbers {
+        font-size: 0.75rem;
+        min-width: 32px;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.json-output {
+    animation: fadeIn 0.2s ease;
+}
+
