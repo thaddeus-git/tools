@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online RegEx tester and debugger. Test regular expressions with real-time matching, highlighting, and explanations. No signup required.">
+    <meta name="keywords" content="regex tester, regular expression tester, regex debugger, regex online, test regex, regex validator, regex matcher">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="RegEx Tester & Debugger | deepv lab">
+    <meta property="og:description" content="Free online RegEx tester with real-time matching and highlighting. Test regular expressions instantly.">
+    <meta property="og:url" content="https://deepvcode.com/regex-tester">
+    
+    <title>RegEx Tester & Debugger | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "RegEx Tester",
+      "description": "Free online regular expression tester and debugger",
+      "url": "https://deepvcode.com/regex-tester",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>RegEx Tester & Debugger</h1>
+                <p class="tool-description">Test regular expressions with real-time matching, highlighting, and explanations</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- RegEx Input -->
+                <div class="regex-section">
+                    <label class="section-label">Regular Expression</label>
+                    <div class="regex-input-wrapper">
+                        <span class="regex-delimiter">/</span>
+                        <input 
+                            type="text" 
+                            id="regexInput" 
+                            class="regex-input" 
+                            placeholder="Enter your regular expression..."
+                            spellcheck="false"
+                        >
+                        <span class="regex-delimiter">/</span>
+                        <input 
+                            type="text" 
+                            id="flagsInput" 
+                            class="flags-input" 
+                            placeholder="flags"
+                            maxlength="5"
+                            spellcheck="false"
+                        >
+                    </div>
+                    
+                    <!-- Flags -->
+                    <div class="flags-section">
+                        <label class="flag-label">
+                            <input type="checkbox" id="flagG" value="g">
+                            <span class="flag-text">
+                                <strong>g</strong> - Global (find all matches)
+                            </span>
+                        </label>
+                        <label class="flag-label">
+                            <input type="checkbox" id="flagI" value="i">
+                            <span class="flag-text">
+                                <strong>i</strong> - Case insensitive
+                            </span>
+                        </label>
+                        <label class="flag-label">
+                            <input type="checkbox" id="flagM" value="m">
+                            <span class="flag-text">
+                                <strong>m</strong> - Multiline
+                            </span>
+                        </label>
+                        <label class="flag-label">
+                            <input type="checkbox" id="flagS" value="s">
+                            <span class="flag-text">
+                                <strong>s</strong> - Dotall (. matches newline)
+                            </span>
+                        </label>
+                        <label class="flag-label">
+                            <input type="checkbox" id="flagU" value="u">
+                            <span class="flag-text">
+                                <strong>u</strong> - Unicode
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Test String -->
+                <div class="test-section">
+                    <label class="section-label">Test String</label>
+                    <textarea 
+                        id="testString" 
+                        class="test-textarea" 
+                        placeholder="Enter text to test against your regex..."
+                        rows="8"
+                    ></textarea>
+                </div>
+
+                <!-- Results -->
+                <div class="results-section">
+                    <div class="results-header">
+                        <h3>Results</h3>
+                        <div class="match-count" id="matchCount">0 matches</div>
+                    </div>
+                    
+                    <!-- Highlighted Output -->
+                    <div class="highlighted-output" id="highlightedOutput">
+                        <span class="placeholder-text">Enter a regex and test string to see matches highlighted</span>
+                    </div>
+                    
+                    <!-- Match Details -->
+                    <div class="match-details" id="matchDetails" style="display: none;">
+                        <h4>Match Details</h4>
+                        <div class="match-list" id="matchList"></div>
+                    </div>
+                </div>
+
+                <!-- Quick Examples -->
+                <div class="examples-section">
+                    <h3>Quick Examples</h3>
+                    <div class="examples-grid">
+                        <button class="example-btn" data-regex="^\w+@\w+\.\w+$" data-flags="i" data-test="user@example.com">
+                            <span class="example-title">Email</span>
+                            <span class="example-regex">^\w+@\w+\.\w+$</span>
+                        </button>
+                        <button class="example-btn" data-regex="^https?://[\w\-\.]+\.\w+" data-flags="i" data-test="https://example.com">
+                            <span class="example-title">URL</span>
+                            <span class="example-regex">^https?://[\w\-\.]+\.\w+</span>
+                        </button>
+                        <button class="example-btn" data-regex="^\d{3}-\d{3}-\d{4}$" data-flags="" data-test="123-456-7890">
+                            <span class="example-title">Phone (US)</span>
+                            <span class="example-regex">^\d{3}-\d{3}-\d{4}$</span>
+                        </button>
+                        <button class="example-btn" data-regex="^#?([a-f0-9]{6}|[a-f0-9]{3})$" data-flags="i" data-test="#FF5733">
+                            <span class="example-title">Hex Color</span>
+                            <span class="example-regex">^#?([a-f0-9]{6}|[a-f0-9]{3})$</span>
+                        </button>
+                        <button class="example-btn" data-regex="^\d{4}-\d{2}-\d{2}$" data-flags="" data-test="2025-10-06">
+                            <span class="example-title">Date (YYYY-MM-DD)</span>
+                            <span class="example-regex">^\d{4}-\d{2}-\d{2}$</span>
+                        </button>
+                        <button class="example-btn" data-regex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" data-flags="" data-test="Password123">
+                            <span class="example-title">Strong Password</span>
+                            <span class="example-regex">^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>🔍 Real-time regex testing and matching</li>
+                    <li>🎨 Syntax highlighting for matches</li>
+                    <li>🚩 Support for all regex flags (g, i, m, s, u)</li>
+                    <li>📊 Match count and details</li>
+                    <li>📝 Capture group display</li>
+                    <li>⚡ Instant feedback as you type</li>
+                    <li>💾 Auto-save regex and test string</li>
+                    <li>📚 Quick examples for common patterns</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Enter RegEx</strong> - Type your regular expression in the pattern field</li>
+                    <li><strong>Select Flags</strong> - Choose flags like global (g) or case-insensitive (i)</li>
+                    <li><strong>Enter Test String</strong> - Type or paste text to test against</li>
+                    <li><strong>View Results</strong> - See matches highlighted in real-time</li>
+                    <li><strong>Check Details</strong> - View match count and capture groups</li>
+                </ol>
+            </section>
+
+            <!-- RegEx Reference -->
+            <section class="tool-info">
+                <h2>RegEx Quick Reference</h2>
+                
+                <h3>Character Classes</h3>
+                <ul class="feature-list">
+                    <li><code>.</code> - Any character except newline</li>
+                    <li><code>\d</code> - Digit (0-9)</li>
+                    <li><code>\w</code> - Word character (a-z, A-Z, 0-9, _)</li>
+                    <li><code>\s</code> - Whitespace (space, tab, newline)</li>
+                    <li><code>[abc]</code> - Any of a, b, or c</li>
+                    <li><code>[^abc]</code> - Not a, b, or c</li>
+                    <li><code>[a-z]</code> - Character range (a to z)</li>
+                </ul>
+
+                <h3>Quantifiers</h3>
+                <ul class="feature-list">
+                    <li><code>*</code> - 0 or more</li>
+                    <li><code>+</code> - 1 or more</li>
+                    <li><code>?</code> - 0 or 1</li>
+                    <li><code>{n}</code> - Exactly n times</li>
+                    <li><code>{n,}</code> - n or more times</li>
+                    <li><code>{n,m}</code> - Between n and m times</li>
+                </ul>
+
+                <h3>Anchors</h3>
+                <ul class="feature-list">
+                    <li><code>^</code> - Start of string/line</li>
+                    <li><code>$</code> - End of string/line</li>
+                    <li><code>\b</code> - Word boundary</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
