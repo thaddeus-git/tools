@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online image compressor. Compress JPG, PNG, WebP images. Reduce file size while maintaining quality. No signup required.">
+    <meta name="keywords" content="image compressor, compress image, reduce image size, optimize image, image optimizer, jpg compressor, png compressor">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Image Compressor | deepv lab">
+    <meta property="og:description" content="Free online image compressor. Reduce image file size instantly.">
+    <meta property="og:url" content="https://deepvcode.com/image-compressor">
+    
+    <title>Image Compressor | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Image Compressor",
+      "description": "Free online image compression tool",
+      "url": "https://deepvcode.com/image-compressor",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>Image Compressor</h1>
+                <p class="tool-description">Compress JPG, PNG, WebP images. Reduce file size while maintaining quality.</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- Upload Section -->
+                <div class="upload-section" id="uploadSection">
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+                        <div class="upload-placeholder">
+                            <span class="upload-icon">🖼️</span>
+                            <p class="upload-text">Click to select images or drag and drop</p>
+                            <p class="upload-hint">Supports JPG, PNG, WebP • Max 10MB per image</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compression Settings -->
+                <div class="settings-section" id="settingsSection" style="display: none;">
+                    <h3>Compression Settings</h3>
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <span>Quality</span>
+                            <span class="quality-value" id="qualityValue">80%</span>
+                        </label>
+                        <input 
+                            type="range" 
+                            id="qualitySlider" 
+                            min="10" 
+                            max="100" 
+                            value="80" 
+                            class="slider"
+                        >
+                        <div class="slider-labels">
+                            <span>Lower quality (smaller file)</span>
+                            <span>Higher quality (larger file)</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-large" id="compressBtn">
+                        <span class="btn-icon">🗜️</span>
+                        <span class="btn-text">Compress Images</span>
+                    </button>
+                </div>
+
+                <!-- Images Grid -->
+                <div class="images-grid" id="imagesGrid" style="display: none;"></div>
+
+                <!-- Batch Actions -->
+                <div class="batch-actions" id="batchActions" style="display: none;">
+                    <button class="btn btn-secondary" id="downloadAllBtn">
+                        <span class="btn-icon">💾</span>
+                        <span class="btn-text">Download All</span>
+                    </button>
+                    <button class="btn btn-secondary" id="clearAllBtn">
+                        <span class="btn-icon">🗑️</span>
+                        <span class="btn-text">Clear All</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>🖼️ Compress JPG, PNG, WebP images</li>
+                    <li>📦 Batch compression (multiple images)</li>
+                    <li>⚙️ Adjustable quality (10-100%)</li>
+                    <li>📊 Before/after comparison</li>
+                    <li>💾 Download individual or all images</li>
+                    <li>📱 Drag and drop support</li>
+                    <li>⚡ Fast client-side compression</li>
+                    <li>🔒 Privacy-focused (no upload to server)</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Upload Images</strong> - Click or drag and drop images</li>
+                    <li><strong>Adjust Quality</strong> - Use slider to set compression quality</li>
+                    <li><strong>Compress</strong> - Click "Compress Images" button</li>
+                    <li><strong>Download</strong> - Download individual images or all at once</li>
+                </ol>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="tool-info">
+                <h2>About Image Compression</h2>
+                <p>Image compression reduces file size by removing unnecessary data while maintaining visual quality. This tool uses client-side compression, meaning your images never leave your browser.</p>
+                
+                <h3>Compression Tips</h3>
+                <ul class="feature-list">
+                    <li><strong>Quality 80-90%</strong> - Best balance of quality and file size</li>
+                    <li><strong>Quality 60-70%</strong> - Good for web thumbnails</li>
+                    <li><strong>Quality 40-50%</strong> - Maximum compression, visible quality loss</li>
+                    <li><strong>PNG</strong> - Best for graphics, logos, screenshots</li>
+                    <li><strong>JPG</strong> - Best for photos</li>
+                    <li><strong>WebP</strong> - Modern format with better compression</li>
+                </ul>
+
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>Optimize images for websites</li>
+                    <li>Reduce email attachment sizes</li>
+                    <li>Save storage space</li>
+                    <li>Faster page load times</li>
+                    <li>Social media uploads</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
