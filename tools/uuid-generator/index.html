@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online UUID/GUID generator. Generate v4 UUIDs instantly. Bulk generation supported. No signup required.">
+    <meta name="keywords" content="uuid generator, guid generator, uuid v4, generate uuid, random uuid, bulk uuid generator">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="UUID Generator | deepv lab">
+    <meta property="og:description" content="Free online UUID/GUID generator. Generate unique identifiers instantly.">
+    <meta property="og:url" content="https://deepvcode.com/uuid-generator">
+    
+    <title>UUID Generator | deepv lab</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    
+    <!-- Tool-specific Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "UUID Generator",
+      "description": "Free online UUID/GUID generator tool",
+      "url": "https://deepvcode.com/uuid-generator",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "deepv lab",
+        "url": "https://deepvcode.com"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Shared Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <span class="logo-text">🔧 deepv lab</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tool Header -->
+            <div class="tool-header">
+                <h1>UUID Generator</h1>
+                <p class="tool-description">Generate unique identifiers (UUID v4) instantly. Bulk generation supported.</p>
+            </div>
+
+            <!-- Tool Content Area -->
+            <div class="tool-content">
+                <!-- Single UUID Display -->
+                <div class="uuid-display">
+                    <div class="uuid-output" id="uuidOutput">
+                        <span class="uuid-text" id="uuidText">Click Generate to create a UUID</span>
+                    </div>
+                    <div class="uuid-actions">
+                        <button class="btn btn-icon" id="copyBtn" title="Copy UUID">
+                            <span class="btn-icon">📋</span>
+                        </button>
+                        <button class="btn btn-icon" id="regenerateBtn" title="Generate new UUID">
+                            <span class="btn-icon">🔄</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button class="btn btn-primary btn-large" id="generateBtn">
+                    <span class="btn-icon">✨</span>
+                    <span class="btn-text">Generate UUID</span>
+                </button>
+
+                <!-- Format Options -->
+                <div class="format-section">
+                    <h3>Format Options</h3>
+                    <div class="format-options">
+                        <label class="radio-option">
+                            <input type="radio" name="format" value="standard" checked>
+                            <span class="option-text">
+                                <strong>Standard</strong>
+                                <code>550e8400-e29b-41d4-a716-446655440000</code>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="format" value="uppercase">
+                            <span class="option-text">
+                                <strong>Uppercase</strong>
+                                <code>550E8400-E29B-41D4-A716-446655440000</code>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="format" value="nohyphens">
+                            <span class="option-text">
+                                <strong>No Hyphens</strong>
+                                <code>550e8400e29b41d4a716446655440000</code>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="format" value="braces">
+                            <span class="option-text">
+                                <strong>With Braces</strong>
+                                <code>{550e8400-e29b-41d4-a716-446655440000}</code>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Bulk Generation -->
+                <div class="bulk-section">
+                    <h3>Bulk Generation</h3>
+                    <div class="bulk-controls">
+                        <label class="bulk-label">
+                            <span>Number of UUIDs:</span>
+                            <input type="number" id="bulkCount" min="1" max="1000" value="10" class="bulk-input">
+                        </label>
+                        <button class="btn btn-secondary" id="bulkGenerateBtn">
+                            <span class="btn-icon">📦</span>
+                            <span class="btn-text">Generate Bulk</span>
+                        </button>
+                    </div>
+                    <div class="bulk-output" id="bulkOutput" style="display: none;">
+                        <div class="bulk-header">
+                            <span class="bulk-title">Generated UUIDs</span>
+                            <div class="bulk-actions">
+                                <button class="btn btn-small" id="copyAllBtn">
+                                    <span class="btn-icon">📋</span>
+                                    <span class="btn-text">Copy All</span>
+                                </button>
+                                <button class="btn btn-small" id="downloadBtn">
+                                    <span class="btn-icon">💾</span>
+                                    <span class="btn-text">Download</span>
+                                </button>
+                            </div>
+                        </div>
+                        <textarea id="bulkList" class="bulk-list" readonly rows="15"></textarea>
+                        <div class="bulk-count" id="bulkCountDisplay">0 UUIDs generated</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Features/Info -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>✨ Generate UUID v4 (random)</li>
+                    <li>🔄 Quick regenerate button</li>
+                    <li>📋 One-click copy to clipboard</li>
+                    <li>🎨 Multiple format options (standard, uppercase, no hyphens, braces)</li>
+                    <li>📦 Bulk generation (up to 1000 UUIDs)</li>
+                    <li>💾 Download bulk UUIDs as text file</li>
+                    <li>🔒 Cryptographically secure random generation</li>
+                    <li>⚡ Instant generation</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Generate Single UUID</strong> - Click "Generate UUID" button</li>
+                    <li><strong>Copy UUID</strong> - Click copy button to copy to clipboard</li>
+                    <li><strong>Choose Format</strong> - Select format option (standard, uppercase, etc.)</li>
+                    <li><strong>Bulk Generation</strong> - Enter count and click "Generate Bulk"</li>
+                    <li><strong>Download</strong> - Click download to save UUIDs as text file</li>
+                </ol>
+            </section>
+
+            <!-- Additional Info -->
+            <section class="tool-info">
+                <h2>About UUID</h2>
+                <p>UUID (Universally Unique Identifier) is a 128-bit number used to identify information in computer systems. UUID v4 uses random numbers to generate unique identifiers with extremely low probability of collision.</p>
+                
+                <h3>UUID Format</h3>
+                <p>Standard UUID format: <code>xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx</code></p>
+                <ul class="feature-list">
+                    <li>32 hexadecimal digits (0-9, a-f)</li>
+                    <li>Displayed in 5 groups separated by hyphens</li>
+                    <li>Version 4 (random) indicated by '4' in third group</li>
+                    <li>Variant indicated by 'y' (8, 9, a, or b)</li>
+                </ul>
+
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>Database primary keys</li>
+                    <li>Session identifiers</li>
+                    <li>File names for uploaded files</li>
+                    <li>API request/response tracking</li>
+                    <li>Distributed system identifiers</li>
+                    <li>Transaction IDs</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shared Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="/color-picker">Color Picker</a></li>
+                        <li><a href="/json-formatter">JSON Formatter</a></li>
+                        <li><a href="/base64">Base64 Encoder</a></li>
+                        <li><a href="/password-generator">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="/shared/scripts/common.js"></script>
+    
+    <!-- Tool-specific JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
