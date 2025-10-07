@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online slug generator. Create SEO-friendly URL slugs from text instantly. Perfect for blog posts, articles, and web pages.">
+    <meta name="keywords" content="slug generator, url slug, seo slug, url friendly, permalink generator, url converter">
+    
+    <title>Slug Generator | deepv lab</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/"><span class="logo-text">🔧 deepv lab</span></a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="tool-header">
+                <h1>Slug Generator</h1>
+                <p class="tool-description">Create SEO-friendly URL slugs from text. Perfect for blog posts, articles, and permalinks.</p>
+            </div>
+
+            <div class="tool-content">
+                <!-- Input Section -->
+                <div class="input-section">
+                    <div class="input-header">
+                        <label for="textInput" class="section-label">Enter Your Text</label>
+                        <button class="btn btn-secondary btn-small" id="clearBtn">
+                            <span class="btn-icon">🗑️</span>
+                            <span class="btn-text">Clear</span>
+                        </button>
+                    </div>
+                    <textarea 
+                        id="textInput" 
+                        class="text-input" 
+                        placeholder="Enter text to convert to slug...&#10;Example: How to Build a Website in 2025"
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+
+                <!-- Options -->
+                <div class="options-section">
+                    <h3>Options</h3>
+                    <div class="options-grid">
+                        <label class="option-item">
+                            <input type="checkbox" id="lowercaseOption" checked>
+                            <span>Convert to lowercase</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="removeSpecialOption" checked>
+                            <span>Remove special characters</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="trimOption" checked>
+                            <span>Trim whitespace</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="maxLengthOption">
+                            <span>Limit length</span>
+                        </label>
+                    </div>
+                    <div class="max-length-input" id="maxLengthInput" style="display: none;">
+                        <label for="maxLength">Maximum length:</label>
+                        <input type="number" id="maxLength" min="10" max="200" value="60">
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <div class="action-section">
+                    <button class="btn btn-primary btn-large" id="generateBtn">
+                        <span class="btn-icon">🔗</span>
+                        <span class="btn-text">Generate Slug</span>
+                    </button>
+                </div>
+
+                <!-- Output Section -->
+                <div class="output-section">
+                    <div class="output-header">
+                        <label class="section-label">Generated Slug</label>
+                        <button class="btn btn-primary btn-small" id="copyBtn">
+                            <span class="btn-icon">📋</span>
+                            <span class="btn-text">Copy</span>
+                        </button>
+                    </div>
+                    <div class="slug-output" id="slugOutput">
+                        <code id="slugText">your-slug-will-appear-here</code>
+                    </div>
+                    <div class="slug-preview">
+                        <span class="preview-label">Preview URL:</span>
+                        <code class="preview-url" id="previewUrl">https://example.com/your-slug-will-appear-here</code>
+                    </div>
+                </div>
+
+                <!-- Batch Mode -->
+                <div class="batch-section">
+                    <h3>Batch Mode</h3>
+                    <p class="batch-description">Generate multiple slugs at once (one per line)</p>
+                    <textarea 
+                        id="batchInput" 
+                        class="batch-input" 
+                        placeholder="Enter multiple titles (one per line)...&#10;Example:&#10;How to Build a Website&#10;Best SEO Practices&#10;Web Development Tips"
+                        spellcheck="false"
+                    ></textarea>
+                    <button class="btn btn-secondary" id="batchGenerateBtn">
+                        <span class="btn-icon">📦</span>
+                        <span class="btn-text">Generate Batch</span>
+                    </button>
+                    <div class="batch-output" id="batchOutput" style="display: none;">
+                        <div class="output-header">
+                            <label class="section-label">Generated Slugs</label>
+                            <button class="btn btn-primary btn-small" id="copyBatchBtn">
+                                <span class="btn-icon">📋</span>
+                                <span class="btn-text">Copy All</span>
+                            </button>
+                        </div>
+                        <textarea 
+                            id="batchOutputText" 
+                            class="batch-output-text" 
+                            readonly
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>🔗 Generate SEO-friendly URL slugs</li>
+                    <li>🔤 Convert to lowercase automatically</li>
+                    <li>🚫 Remove special characters</li>
+                    <li>✂️ Trim whitespace</li>
+                    <li>📏 Optional length limit</li>
+                    <li>📦 Batch mode for multiple slugs</li>
+                    <li>👁️ Live URL preview</li>
+                    <li>📋 One-click copy</li>
+                    <li>💾 Auto-save to localStorage</li>
+                    <li>🌙 Dark mode support</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Enter Text</strong> - Type or paste your title or text</li>
+                    <li><strong>Configure Options</strong> - Choose conversion options</li>
+                    <li><strong>Generate</strong> - Click "Generate Slug" button</li>
+                    <li><strong>Copy</strong> - Click "Copy" to copy the slug</li>
+                    <li><strong>Batch Mode</strong> - Enter multiple titles for batch generation</li>
+                </ol>
+            </section>
+
+            <!-- About -->
+            <section class="tool-info">
+                <h2>About URL Slugs</h2>
+                <p>A URL slug is the part of a URL that identifies a particular page in a human-readable format. Good slugs are essential for SEO and user experience.</p>
+                
+                <h3>Best Practices</h3>
+                <ul class="feature-list">
+                    <li><strong>Keep it short:</strong> 3-5 words is ideal</li>
+                    <li><strong>Use hyphens:</strong> Separate words with hyphens, not underscores</li>
+                    <li><strong>Lowercase only:</strong> Avoid uppercase letters</li>
+                    <li><strong>Remove stop words:</strong> Remove "a", "the", "and", etc.</li>
+                    <li><strong>Include keywords:</strong> Use relevant keywords for SEO</li>
+                    <li><strong>Avoid special characters:</strong> Stick to letters, numbers, and hyphens</li>
+                </ul>
+
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li>Blog post URLs</li>
+                    <li>Article permalinks</li>
+                    <li>Product page URLs</li>
+                    <li>Category and tag pages</li>
+                    <li>Landing pages</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <script src="/shared/scripts/common.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
