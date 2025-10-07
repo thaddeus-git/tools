@@ -1,0 +1,179 @@
+/* Case Converter Specific Styles */
+
+/* Input Section */
+.input-section {
+    margin-bottom: var(--space-6);
+}
+
+.input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+}
+
+.input-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.char-count {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.section-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.text-input,
+.text-output {
+    width: 100%;
+    min-height: 150px;
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    resize: vertical;
+    transition: all 0.2s ease;
+}
+
+.text-input:focus,
+.text-output:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-color-alpha);
+}
+
+.text-input::placeholder,
+.text-output::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* Conversion Grid */
+.conversion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+.conversion-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.conversion-btn:hover {
+    border-color: var(--primary-color);
+    background: var(--bg-tertiary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.conversion-btn:active {
+    transform: translateY(0);
+}
+
+.conversion-label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.conversion-example {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+/* Output Section */
+.output-section {
+    margin-bottom: var(--space-6);
+}
+
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+}
+
+.text-output {
+    background: var(--bg-tertiary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .conversion-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-2);
+    }
+
+    .conversion-btn {
+        padding: var(--space-3);
+    }
+
+    .conversion-label {
+        font-size: 0.875rem;
+    }
+
+    .conversion-example {
+        font-size: 0.75rem;
+    }
+
+    .input-header,
+    .output-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+    }
+
+    .input-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .text-input,
+    .text-output {
+        min-height: 120px;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .conversion-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] .conversion-btn {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .conversion-btn:hover {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .text-input,
+[data-theme="dark"] .text-output {
+    background: var(--bg-tertiary);
+}
+

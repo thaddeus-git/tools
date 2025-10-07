@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online case converter. Convert text to UPPERCASE, lowercase, Title Case, camelCase, snake_case, kebab-case instantly.">
+    <meta name="keywords" content="case converter, text converter, uppercase, lowercase, title case, camel case, snake case, kebab case">
+    
+    <title>Case Converter | deepv lab</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/"><span class="logo-text">🔧 deepv lab</span></a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="tool-header">
+                <h1>Case Converter</h1>
+                <p class="tool-description">Convert text to different cases instantly. UPPERCASE, lowercase, Title Case, and more.</p>
+            </div>
+
+            <div class="tool-content">
+                <!-- Input Section -->
+                <div class="input-section">
+                    <div class="input-header">
+                        <label for="textInput" class="section-label">Enter Your Text</label>
+                        <div class="input-actions">
+                            <span class="char-count" id="charCount">0 characters</span>
+                            <button class="btn btn-secondary btn-small" id="clearBtn">
+                                <span class="btn-icon">🗑️</span>
+                                <span class="btn-text">Clear</span>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea 
+                        id="textInput" 
+                        class="text-input" 
+                        placeholder="Type or paste your text here..."
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+
+                <!-- Conversion Buttons -->
+                <div class="conversion-grid">
+                    <button class="conversion-btn" data-case="upper">
+                        <span class="conversion-label">UPPERCASE</span>
+                        <span class="conversion-example">HELLO WORLD</span>
+                    </button>
+                    <button class="conversion-btn" data-case="lower">
+                        <span class="conversion-label">lowercase</span>
+                        <span class="conversion-example">hello world</span>
+                    </button>
+                    <button class="conversion-btn" data-case="title">
+                        <span class="conversion-label">Title Case</span>
+                        <span class="conversion-example">Hello World</span>
+                    </button>
+                    <button class="conversion-btn" data-case="sentence">
+                        <span class="conversion-label">Sentence case</span>
+                        <span class="conversion-example">Hello world</span>
+                    </button>
+                    <button class="conversion-btn" data-case="camel">
+                        <span class="conversion-label">camelCase</span>
+                        <span class="conversion-example">helloWorld</span>
+                    </button>
+                    <button class="conversion-btn" data-case="pascal">
+                        <span class="conversion-label">PascalCase</span>
+                        <span class="conversion-example">HelloWorld</span>
+                    </button>
+                    <button class="conversion-btn" data-case="snake">
+                        <span class="conversion-label">snake_case</span>
+                        <span class="conversion-example">hello_world</span>
+                    </button>
+                    <button class="conversion-btn" data-case="kebab">
+                        <span class="conversion-label">kebab-case</span>
+                        <span class="conversion-example">hello-world</span>
+                    </button>
+                    <button class="conversion-btn" data-case="constant">
+                        <span class="conversion-label">CONSTANT_CASE</span>
+                        <span class="conversion-example">HELLO_WORLD</span>
+                    </button>
+                    <button class="conversion-btn" data-case="dot">
+                        <span class="conversion-label">dot.case</span>
+                        <span class="conversion-example">hello.world</span>
+                    </button>
+                </div>
+
+                <!-- Output Section -->
+                <div class="output-section">
+                    <div class="output-header">
+                        <label class="section-label">Converted Text</label>
+                        <button class="btn btn-primary btn-small" id="copyBtn">
+                            <span class="btn-icon">📋</span>
+                            <span class="btn-text">Copy</span>
+                        </button>
+                    </div>
+                    <textarea 
+                        id="textOutput" 
+                        class="text-output" 
+                        placeholder="Converted text will appear here..."
+                        readonly
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>🔤 UPPERCASE - Convert all letters to uppercase</li>
+                    <li>🔡 lowercase - Convert all letters to lowercase</li>
+                    <li>📝 Title Case - Capitalize first letter of each word</li>
+                    <li>✍️ Sentence case - Capitalize first letter of sentences</li>
+                    <li>🐫 camelCase - First word lowercase, rest capitalized</li>
+                    <li>🅿️ PascalCase - All words capitalized, no spaces</li>
+                    <li>🐍 snake_case - Words separated by underscores</li>
+                    <li>🔗 kebab-case - Words separated by hyphens</li>
+                    <li>📌 CONSTANT_CASE - Uppercase with underscores</li>
+                    <li>⚫ dot.case - Words separated by dots</li>
+                    <li>📋 One-click copy</li>
+                    <li>🌙 Dark mode support</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Enter Text</strong> - Type or paste your text in the input area</li>
+                    <li><strong>Choose Case</strong> - Click any conversion button</li>
+                    <li><strong>Copy Result</strong> - Click "Copy" to copy the converted text</li>
+                </ol>
+            </section>
+
+            <!-- About -->
+            <section class="tool-info">
+                <h2>About Text Case Conversion</h2>
+                <p>Text case conversion is essential for developers, writers, and content creators who need to format text consistently across different platforms and use cases.</p>
+                
+                <h3>Common Use Cases</h3>
+                <ul class="feature-list">
+                    <li><strong>Programming:</strong> Variable names (camelCase, snake_case)</li>
+                    <li><strong>URLs:</strong> SEO-friendly slugs (kebab-case)</li>
+                    <li><strong>Constants:</strong> Configuration values (CONSTANT_CASE)</li>
+                    <li><strong>Titles:</strong> Headings and titles (Title Case)</li>
+                    <li><strong>Content:</strong> Proper sentence formatting</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <script src="/shared/scripts/common.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
