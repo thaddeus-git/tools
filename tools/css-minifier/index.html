@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online CSS minifier and beautifier. Compress CSS files, remove whitespace and comments. Reduce file size instantly.">
+    <meta name="keywords" content="css minifier, css compressor, minify css, compress css, css beautifier, css formatter">
+    
+    <title>CSS Minifier & Beautifier | deepv lab</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared/styles/common.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/"><span class="logo-text">🔧 deepv lab</span></a>
+                </div>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/tools" class="nav-link">All Tools</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="tool-header">
+                <h1>CSS Minifier & Beautifier</h1>
+                <p class="tool-description">Minify CSS to reduce file size or beautify for better readability. Fast and free.</p>
+            </div>
+
+            <div class="tool-content">
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="minifyBtn">
+                        <span class="btn-icon">📦</span>
+                        <span class="btn-text">Minify CSS</span>
+                    </button>
+                    <button class="btn btn-secondary" id="beautifyBtn">
+                        <span class="btn-icon">✨</span>
+                        <span class="btn-text">Beautify CSS</span>
+                    </button>
+                    <button class="btn btn-secondary" id="clearBtn">
+                        <span class="btn-icon">🗑️</span>
+                        <span class="btn-text">Clear</span>
+                    </button>
+                </div>
+
+                <!-- Input Section -->
+                <div class="editor-section">
+                    <div class="editor-header">
+                        <h3>Input CSS</h3>
+                        <div class="editor-stats">
+                            <span class="stat-badge" id="inputSize">0 bytes</span>
+                            <span class="stat-badge" id="inputChars">0 characters</span>
+                        </div>
+                    </div>
+                    <textarea 
+                        id="cssInput" 
+                        class="css-editor" 
+                        placeholder="Paste your CSS here...
+
+Example:
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}"
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+
+                <!-- Output Section -->
+                <div class="editor-section">
+                    <div class="editor-header">
+                        <h3>Output CSS</h3>
+                        <div class="editor-actions">
+                            <span class="stat-badge" id="outputSize">0 bytes</span>
+                            <span class="stat-badge" id="outputChars">0 characters</span>
+                            <span class="stat-badge stat-success" id="savings" style="display: none;">0% saved</span>
+                            <button class="btn btn-primary btn-small" id="copyBtn">
+                                <span class="btn-icon">📋</span>
+                                <span class="btn-text">Copy</span>
+                            </button>
+                            <button class="btn btn-secondary btn-small" id="downloadBtn">
+                                <span class="btn-icon">💾</span>
+                                <span class="btn-text">Download</span>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea 
+                        id="cssOutput" 
+                        class="css-editor" 
+                        placeholder="Minified or beautified CSS will appear here..."
+                        readonly
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <section class="tool-info">
+                <h2>Features</h2>
+                <ul class="feature-list">
+                    <li>📦 Minify CSS - Remove whitespace and comments</li>
+                    <li>✨ Beautify CSS - Format with proper indentation</li>
+                    <li>📊 Show file size before and after</li>
+                    <li>💾 Calculate space savings</li>
+                    <li>📋 One-click copy to clipboard</li>
+                    <li>💾 Download as .css file</li>
+                    <li>⚡ Fast client-side processing</li>
+                    <li>🔒 Your CSS never leaves your browser</li>
+                    <li>🌙 Dark mode support</li>
+                    <li>📱 Fully responsive design</li>
+                </ul>
+            </section>
+
+            <!-- How to Use -->
+            <section class="tool-usage">
+                <h2>How to Use</h2>
+                <ol class="usage-steps">
+                    <li><strong>Paste CSS</strong> - Enter your CSS code in the input area</li>
+                    <li><strong>Choose Action</strong> - Click "Minify" to compress or "Beautify" to format</li>
+                    <li><strong>Copy or Download</strong> - Use the buttons to copy or save the result</li>
+                </ol>
+            </section>
+
+            <!-- About -->
+            <section class="tool-info">
+                <h2>About CSS Minification</h2>
+                <p>CSS minification removes unnecessary characters from CSS code without changing its functionality. This reduces file size and improves page load times.</p>
+                
+                <h3>What Gets Removed</h3>
+                <ul class="feature-list">
+                    <li>Whitespace (spaces, tabs, newlines)</li>
+                    <li>Comments (/* ... */)</li>
+                    <li>Unnecessary semicolons</li>
+                    <li>Empty rules</li>
+                </ul>
+
+                <h3>Benefits</h3>
+                <ul class="feature-list">
+                    <li><strong>Faster Loading:</strong> Smaller files load faster</li>
+                    <li><strong>Reduced Bandwidth:</strong> Less data transferred</li>
+                    <li><strong>Better Performance:</strong> Improved page speed scores</li>
+                    <li><strong>SEO Benefits:</strong> Faster sites rank better</li>
+                </ul>
+
+                <h3>When to Use</h3>
+                <ul class="feature-list">
+                    <li><strong>Production:</strong> Always minify CSS for production</li>
+                    <li><strong>Development:</strong> Use beautified CSS for easier debugging</li>
+                    <li><strong>Build Process:</strong> Integrate into your build pipeline</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>deepv lab</h3>
+                    <p>Free online tools for developers</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 deepv lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Success!</span>
+    </div>
+
+    <script src="/shared/scripts/common.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
