@@ -165,6 +165,7 @@
     user-select: none;
     line-height: 1.5;
     min-width: 40px;
+    white-space: pre;
 }
 
 .json-editor {
